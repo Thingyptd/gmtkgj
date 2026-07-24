@@ -6,15 +6,12 @@ public class GameSession : MonoBehaviour
 {
     public static GameSession Instance { get; private set; }
 
-    [Header("Squadra (impostata in editor per il livello iniziale)")]
-    public List<CharacterData> equippedCharacters = new List<CharacterData>();
-
-    [Header("Scene dei piani, in ordine")]
+    [Header("Floor scenes")]
     public List<string> floorSceneNames = new List<string>();
 
-    // Stato runtime della squadra: indice del personaggio corrente e mosse residue
+    public List<CharacterData> equippedCharacters = new List<CharacterData>();
     public int currentCharacterIndex = 0;
-    public int currentCharacterMovesRemaining = -1; // -1 = non ancora inizializzato per il personaggio corrente
+    public int currentCharacterMovesRemaining = -1;
 
     private int currentFloorSceneIndex = 0;
 
@@ -38,7 +35,7 @@ public class GameSession : MonoBehaviour
     public void AdvanceToNextCharacter()
     {
         currentCharacterIndex++;
-        currentCharacterMovesRemaining = -1; // il prossimo CharacterManager lo inizializzerà da CharacterData.moveRange
+        currentCharacterMovesRemaining = -1;
     }
 
     public void GoToNextFloor()
@@ -47,8 +44,7 @@ public class GameSession : MonoBehaviour
 
         if (currentFloorSceneIndex >= floorSceneNames.Count)
         {
-            Debug.Log("Hai completato tutti i piani! Vittoria.");
-            // qui in futuro: scena di vittoria
+            Debug.Log("Tutti i piani completati");
             return;
         }
 
@@ -57,15 +53,11 @@ public class GameSession : MonoBehaviour
 
     public void ResetCurrentFloor()
     {
-        // Reset del piano: la scena si ricarica da zero (massi, trappole, layout tornano come in editor).
-        // NOTA: la squadra equipaggiata NON viene toccata qui, resta quella attuale
-        // (decidi tu se un game over debba anche resettare la squadra, vedi ResetEntireRun sotto)
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void ResetEntireRun()
     {
-        // Reset completo: squadra ripristinata, si torna al primo piano
         currentCharacterIndex = 0;
         currentCharacterMovesRemaining = -1;
         currentFloorSceneIndex = 0;

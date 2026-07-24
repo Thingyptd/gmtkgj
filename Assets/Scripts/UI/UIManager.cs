@@ -15,9 +15,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI floorText;
 
     [Header("Queue Display")]
-    [Tooltip("Prefab con una sola Image (icona/pallino) che verrà instanziato per ogni personaggio in coda")]
     public GameObject queueIconPrefab;
-    public Transform queueContainer; // GameObject con un Horizontal Layout Group
+    public Transform queueContainer; 
 
     private GridMovement currentCharacter;
     private List<GameObject> queueIcons = new List<GameObject>();
@@ -54,8 +53,6 @@ public class UIManager : MonoBehaviour
         currentCharacter = character;
         currentCharacter.OnMovesChanged += HandleMovesChanged;
 
-        // Fix: Initialize() ha già invocato OnMovesChanged PRIMA che ci iscrivessimo,
-        // quindi leggiamo subito lo stato attuale invece di aspettare il prossimo movimento
         HandleMovesChanged(character.movesRemaining, character.data.moveRange);
 
         RefreshQueue();
@@ -87,7 +84,6 @@ public class UIManager : MonoBehaviour
         var session = GameSession.Instance;
         if (session == null) return;
 
-        // Mostra tutti i personaggi DA quello corrente in poi (corrente incluso, evidenziato)
         for (int i = session.currentCharacterIndex; i < session.equippedCharacters.Count; i++)
         {
             CharacterData data = session.equippedCharacters[i];
@@ -120,7 +116,6 @@ public class UIManager : MonoBehaviour
         var session = GameSession.Instance;
         if (session == null) return;
 
-        // CurrentFloorIndex è 0-based, mostriamo 1-based per l'utente ("Piano 1" invece di "Piano 0")
         floorText.text = $"F{session.CurrentFloorIndex + 1}";
     }
 }

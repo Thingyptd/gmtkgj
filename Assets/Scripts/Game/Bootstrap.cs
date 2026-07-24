@@ -11,7 +11,7 @@ public class Bootstrap : MonoBehaviour
         }
         else
         {
-            Debug.LogError("GameSession non configurato correttamente: nessun piano da caricare.");
+            Debug.LogError("Nessun piano da caricare");
         }
     }
 }

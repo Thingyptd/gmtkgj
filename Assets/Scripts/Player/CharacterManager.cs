@@ -5,14 +5,14 @@ using UnityEngine.Tilemaps;
 
 public class CharacterManager : MonoBehaviour
 {
-    [Header("Grid & Tilemaps (di QUESTO piano/scena)")]
+    [Header("Grid & Tilemaps")]
     public Grid grid;
     public Tilemap collisionTilemap;
     public Tilemap pitsTilemap;
 
     [Header("Setup")]
     public GameObject characterPrefab;
-    public Transform spawnPoint; // usato solo se il personaggio arriva "fresco" su questo piano (es. primo piano, o reset)
+    public Transform spawnPoint; 
 
     [Header("Timing")]
     public float deathDelay = 0.6f;
@@ -25,10 +25,13 @@ public class CharacterManager : MonoBehaviour
     private Vector3 lastPosition;
     private Vector3 lastGroundPosition;
 
-    void Start()
+    void Awake()
     {
-        if (grid == null) grid = FindObjectOfType<Grid>();
+        if (grid == null) grid = FindAnyObjectByType<Grid>();
+    }
 
+    public void BeginFloor()
+    {
         lastPosition = spawnPoint != null ? spawnPoint.position : Vector3.zero;
         lastGroundPosition = lastPosition;
 
