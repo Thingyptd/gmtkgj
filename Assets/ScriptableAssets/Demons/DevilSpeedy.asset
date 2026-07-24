@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 754f4e2e083aaf54ba9677d68f603dd5, type: 3}
+  m_Name: DevilSpeedy
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterData
+  characterName: Speedy
+  characterColor: {r: 0.03804734, g: 0.5377358, b: 0.5270739, a: 1}
+  moveRange: 15
+  canPushBoulders: 0
+  canFlyOverPits: 0
