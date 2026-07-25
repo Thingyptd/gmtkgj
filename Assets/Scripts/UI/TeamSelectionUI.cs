@@ -8,26 +8,23 @@ public class TeamSelectionUI : MonoBehaviour
     [Header("References")]
     public CharacterManager characterManager;
 
-    public GameObject teamSelectionPanelRoot;
-
     [Tooltip("Tutti i personaggi assegnabili su questo piano")]
     public List<CharacterData> availableRoster = new List<CharacterData>();
 
-    [Header("Contenitore che si nasconde con 'Vedi livello'")]
-    public GameObject selectionContentRoot;
+    [Header("Root del pannello grafico da nascondere a fine selezione")]
+    public GameObject teamSelectionPanelRoot;
 
     [Header("Pannello Disponibili")]
     public Transform availableContainer;
-    public GameObject availableItemPrefab; // figli attesi: NameText, ColorImage, e il Button è sull'oggetto radice
-
-    [Header("Pannello Squadra")]
-    public Transform teamContainer;
-    public GameObject teamItemPrefab; // figli attesi: NameText, ColorImage (nessun Button necessario)
+    public GameObject availableItemPrefab; // figli attesi: NameText, ColorImage, OrderBadge (Button sull'oggetto radice)
 
     [Header("Bottoni principali")]
     public Button undoButton;
     public Button confirmButton;
     public Button previewLevelButton;
+
+    [Header("Contenitore che si nasconde con 'Vedi livello'")]
+    public GameObject selectionContentRoot;
 
     [Header("Popup di conferma")]
     public GameObject confirmDialogRoot;
@@ -37,7 +34,7 @@ public class TeamSelectionUI : MonoBehaviour
     private List<CharacterData> selectedOrder = new List<CharacterData>();
     private List<Button> availableButtons = new List<Button>();
     private List<Image> availableImages = new List<Image>();
-    private List<GameObject> teamRowInstances = new List<GameObject>();
+    private List<TextMeshProUGUI> availableBadges = new List<TextMeshProUGUI>();
 
     private bool contentVisible = true;
 
@@ -69,12 +66,16 @@ public class TeamSelectionUI : MonoBehaviour
             var colorImage = itemGO.transform.Find("ColorImage")?.GetComponent<Image>();
             if (colorImage != null) colorImage.color = data.characterColor;
 
+            var badge = itemGO.transform.Find("OrderBadge")?.GetComponent<TextMeshProUGUI>();
+            if (badge != null) badge.gameObject.SetActive(false);
+
             Button button = itemGO.GetComponent<Button>();
             int index = i; // cattura locale per la closure
             button.onClick.AddListener(() => OnAvailableClicked(index));
 
             availableButtons.Add(button);
             availableImages.Add(colorImage);
+            availableBadges.Add(badge);
         }
     }
 
@@ -85,8 +86,7 @@ public class TeamSelectionUI : MonoBehaviour
         CharacterData data = availableRoster[index];
         selectedOrder.Add(data);
 
-        SetAvailableItemSelected(index, true);
-        AddTeamRow(data);
+        SetAvailableItemSelected(index, true, selectedOrder.Count);
         RefreshUI();
     }
 
@@ -98,40 +98,24 @@ public class TeamSelectionUI : MonoBehaviour
         selectedOrder.RemoveAt(selectedOrder.Count - 1);
 
         int index = availableRoster.IndexOf(last);
-        if (index >= 0) SetAvailableItemSelected(index, false);
+        if (index >= 0) SetAvailableItemSelected(index, false, 0);
 
-        RemoveLastTeamRow();
         RefreshUI();
     }
 
-    private void SetAvailableItemSelected(int index, bool selected)
+    private void SetAvailableItemSelected(int index, bool selected, int orderNumber)
     {
         availableButtons[index].interactable = !selected;
 
         if (availableImages[index] != null)
             availableImages[index].color = selected ? Color.gray : availableRoster[index].characterColor;
-    }
 
-    private void AddTeamRow(CharacterData data)
-    {
-        GameObject rowGO = Instantiate(teamItemPrefab, teamContainer);
-
-        var nameText = rowGO.transform.Find("NameText")?.GetComponent<TextMeshProUGUI>();
-        if (nameText != null) nameText.text = data.characterName;
-
-        var colorImage = rowGO.transform.Find("ColorImage")?.GetComponent<Image>();
-        if (colorImage != null) colorImage.color = data.characterColor;
-
-        teamRowInstances.Add(rowGO);
-    }
-
-    private void RemoveLastTeamRow()
-    {
-        if (teamRowInstances.Count == 0) return;
-
-        int lastIndex = teamRowInstances.Count - 1;
-        Destroy(teamRowInstances[lastIndex]);
-        teamRowInstances.RemoveAt(lastIndex);
+        if (availableBadges[index] != null)
+        {
+            availableBadges[index].gameObject.SetActive(selected);
+            if (selected)
+                availableBadges[index].text = orderNumber.ToString();
+        }
     }
 
     private void RefreshUI()
