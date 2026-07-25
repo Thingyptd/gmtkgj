@@ -117,11 +117,6 @@ public class GridMovement : MonoBehaviour
         if (isTeetering)
             return;
 
-        // Blocchiamo SOLO nuovo input quando il personaggio è morto, non il completamento
-        // dell'animazione di movimento già iniziata: senza questa distinzione, un personaggio
-        // che muore esaurendo l'ultima mossa restava visivamente fermo (con instantMove = false)
-        // perché HandleMovement() non veniva più chiamato, e con esso l'interpolazione verso
-        // targetPosition non arrivava mai a completarsi.
         if (!isDead)
             HandleInputEdges();
 
@@ -161,9 +156,6 @@ public class GridMovement : MonoBehaviour
     {
         if (!isMoving)
         {
-            // Il repeat da tenuta premuta va comunque limitato al caso "vivo": se il personaggio
-            // è morto, TryMove() lo bloccherebbe comunque (guardia isDead), ma evitiamo pure
-            // di provarci per chiarezza.
             if (!isDead && allowHoldRepeat && heldDirections.Count > 0)
             {
                 repeatTimer -= Time.deltaTime;
@@ -427,6 +419,8 @@ public class GridMovement : MonoBehaviour
     }
 
     public Vector3 GetCurrentWorldPosition() => transform.position;
+
+    public Vector3 GetTargetWorldPosition() => targetPosition;
 
     public void ApplyFloorTransition(Tilemap newWalls, Tilemap newPits, Vector3 spawnWorldPos)
     {
