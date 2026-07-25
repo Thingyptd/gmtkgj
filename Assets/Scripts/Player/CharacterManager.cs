@@ -28,6 +28,8 @@ public class CharacterManager : MonoBehaviour
     void Awake()
     {
         if (grid == null) grid = FindAnyObjectByType<Grid>();
+
+        ScreenTransition.Instance.Open();
     }
 
     public void BeginFloor()
@@ -81,9 +83,10 @@ public class CharacterManager : MonoBehaviour
 
     private void HandleStairsEntered(GridMovement character)
     {
-        // Salva le mosse residue del personaggio corrente PRIMA di cambiare scena
-        GameSession.Instance.currentCharacterMovesRemaining = character.movesRemaining;
-        GameSession.Instance.GoToNextFloor();
+        ScreenTransition.Instance.Close(() =>
+        {
+            GameSession.Instance.GoToNextFloor(); 
+        });
     }
 
     private void HandleMovesExhausted(GridMovement deadCharacter)

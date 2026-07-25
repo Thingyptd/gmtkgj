@@ -71,11 +71,12 @@
     <Compile Include="Assets\Scripts\Environment\Boulder.cs" />
     <Compile Include="Assets\Scripts\Player\GridMovement.cs" />
     <Compile Include="Assets\Scripts\UI\TeamSelectionUI.cs" />
-    <Compile Include="Assets\Scripts\ScriiptableObjects\CharacterData.cs" />
     <Compile Include="Assets\Scripts\Environment\Stairs.cs" />
     <Compile Include="Assets\Scripts\Player\MovementAnimations.cs" />
     <Compile Include="Assets\Scripts\Player\CharacterManager.cs" />
+    <Compile Include="Assets\Scripts\Game\ScreenTransition.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\CharacterData.cs" />
     <Compile Include="Assets\Scripts\Game\GameSession.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +97,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\Visual\Shader\SpiralWipe.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
