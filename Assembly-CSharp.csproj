@@ -71,9 +71,11 @@
     <Compile Include="Assets\Scripts\Environment\Boulder.cs" />
     <Compile Include="Assets\Scripts\Player\GridMovement.cs" />
     <Compile Include="Assets\Scripts\UI\TeamSelectionUI.cs" />
+    <Compile Include="Assets\Scripts\Sound\FMODEvents.cs" />
     <Compile Include="Assets\Scripts\Environment\Stairs.cs" />
     <Compile Include="Assets\Scripts\Player\MovementAnimations.cs" />
     <Compile Include="Assets\Scripts\Player\CharacterManager.cs" />
+    <Compile Include="Assets\Scripts\Sound\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Game\ScreenTransition.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\CharacterData.cs" />
