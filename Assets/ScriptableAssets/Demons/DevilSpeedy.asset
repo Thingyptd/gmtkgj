@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: DevilSpeedy
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterName: Speedy
-  characterColor: {r: 0.03804734, g: 0.5377358, b: 0.5270739, a: 1}
+  characterColor: {r: 1, g: 1, b: 1, a: 1}
+  characterSprite: {fileID: 21300000, guid: 1be724291278550438baade895ebaddb, type: 3}
   moveRange: 15
   canPushBoulders: 0
   canFlyOverPits: 0
+  isImmuneToTraps: 0

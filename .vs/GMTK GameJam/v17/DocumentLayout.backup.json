@@ -3,36 +3,44 @@
   "WorkspaceRootPath": "C:\\Users\\giovr\\GMTK GameJam\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|c:\\users\\giovr\\gmtk gamejam\\assets\\scripts\\ui\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|C:\\Users\\giovr\\GMTK GameJam\\assets\\scripts\\player\\charactermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\charactermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|C:\\Users\\giovr\\GMTK GameJam\\assets\\scripts\\environment\\stairs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\environment\\stairs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|C:\\Users\\giovr\\GMTK GameJam\\assets\\scripts\\game\\bootstrap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\bootstrap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|C:\\Users\\giovr\\GMTK GameJam\\assets\\scripts\\game\\gamesession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\gamesession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|C:\\Users\\giovr\\GMTK GameJam\\assets\\scripts\\environment\\deathtrap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\environment\\deathtrap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|c:\\users\\giovr\\gmtk gamejam\\assets\\scripts\\player\\gridmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\gridmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|C:\\Users\\giovr\\GMTK GameJam\\assets\\scripts\\scriiptableobjects\\characterdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\scriiptableobjects\\characterdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|c:\\users\\giovr\\gmtk gamejam\\assets\\scripts\\ui\\teamselectionui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\teamselectionui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|C:\\Users\\giovr\\GMTK GameJam\\assets\\scripts\\environment\\boulder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\environment\\boulder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|C:\\Users\\giovr\\GMTK GameJam\\assets\\scripts\\player\\charactermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\charactermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|C:\\Users\\giovr\\GMTK GameJam\\assets\\scripts\\environment\\deathtrap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\environment\\deathtrap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|C:\\Users\\giovr\\GMTK GameJam\\assets\\scripts\\ui\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|C:\\Users\\giovr\\GMTK GameJam\\assets\\scripts\\game\\gamesession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\gamesession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|C:\\Users\\giovr\\GMTK GameJam\\assets\\scripts\\game\\bootstrap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\bootstrap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|C:\\Users\\giovr\\GMTK GameJam\\assets\\scripts\\environment\\stairs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6AA4133-5BBD-BC31-CE91-5F3093962129}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\environment\\stairs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,11 +50,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GridMovement.cs",
+              "DocumentMoniker": "C:\\Users\\giovr\\GMTK GameJam\\Assets\\Scripts\\Player\\GridMovement.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\GridMovement.cs",
+              "ToolTip": "C:\\Users\\giovr\\GMTK GameJam\\Assets\\Scripts\\Player\\GridMovement.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\GridMovement.cs",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAQwGYAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-25T12:41:30.723Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "TeamSelectionUI.cs",
+              "DocumentMoniker": "C:\\Users\\giovr\\GMTK GameJam\\Assets\\Scripts\\UI\\TeamSelectionUI.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\TeamSelectionUI.cs",
+              "ToolTip": "C:\\Users\\giovr\\GMTK GameJam\\Assets\\Scripts\\UI\\TeamSelectionUI.cs",
+              "RelativeToolTip": "Assets\\Scripts\\UI\\TeamSelectionUI.cs",
+              "ViewState": "AgIAAIUAAAAAAAAAAAAwwJ0AAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-24T19:45:51.295Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "Stairs.cs",
               "DocumentMoniker": "C:\\Users\\giovr\\GMTK GameJam\\Assets\\Scripts\\Environment\\Stairs.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Environment\\Stairs.cs",
@@ -58,40 +92,39 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 8,
               "Title": "Bootstrap.cs",
               "DocumentMoniker": "C:\\Users\\giovr\\GMTK GameJam\\Assets\\Scripts\\Game\\Bootstrap.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\Bootstrap.cs",
               "ToolTip": "C:\\Users\\giovr\\GMTK GameJam\\Assets\\Scripts\\Game\\Bootstrap.cs",
               "RelativeToolTip": "Assets\\Scripts\\Game\\Bootstrap.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-24T10:21:45.567Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "GameSession.cs",
               "DocumentMoniker": "C:\\Users\\giovr\\GMTK GameJam\\Assets\\Scripts\\Game\\GameSession.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\GameSession.cs",
               "ToolTip": "C:\\Users\\giovr\\GMTK GameJam\\Assets\\Scripts\\Game\\GameSession.cs",
               "RelativeToolTip": "Assets\\Scripts\\Game\\GameSession.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAUwEwAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAACQAAAAAAAAAAAAowC4AAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-24T10:16:08.653Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "UIManager.cs",
               "DocumentMoniker": "C:\\Users\\giovr\\GMTK GameJam\\Assets\\Scripts\\UI\\UIManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\UIManager.cs",
               "ToolTip": "C:\\Users\\giovr\\GMTK GameJam\\Assets\\Scripts\\UI\\UIManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\UI\\UIManager.cs",
-              "ViewState": "AgIAAFwAAAAAAAAAAAAswH0AAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAFYAAAAAAAAAAAAswHUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-23T23:11:04.182Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-23T23:11:04.182Z"
             },
             {
               "$type": "Document",
@@ -107,37 +140,38 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "CharacterData.cs",
               "DocumentMoniker": "C:\\Users\\giovr\\GMTK GameJam\\Assets\\Scripts\\ScriiptableObjects\\CharacterData.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\ScriiptableObjects\\CharacterData.cs",
               "ToolTip": "C:\\Users\\giovr\\GMTK GameJam\\Assets\\Scripts\\ScriiptableObjects\\CharacterData.cs",
               "RelativeToolTip": "Assets\\Scripts\\ScriiptableObjects\\CharacterData.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-23T16:57:47.727Z"
+              "WhenOpened": "2026-07-23T16:57:47.727Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "CharacterManager.cs",
               "DocumentMoniker": "C:\\Users\\giovr\\GMTK GameJam\\Assets\\Scripts\\Player\\CharacterManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\CharacterManager.cs",
               "ToolTip": "C:\\Users\\giovr\\GMTK GameJam\\Assets\\Scripts\\Player\\CharacterManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\Player\\CharacterManager.cs",
-              "ViewState": "AgIAAEUAAAAAAAAAAAAYwGoAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAwCYAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-23T16:54:41.504Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 3,
               "Title": "Boulder.cs",
               "DocumentMoniker": "C:\\Users\\giovr\\GMTK GameJam\\Assets\\Scripts\\Environment\\Boulder.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Environment\\Boulder.cs",
               "ToolTip": "C:\\Users\\giovr\\GMTK GameJam\\Assets\\Scripts\\Environment\\Boulder.cs",
               "RelativeToolTip": "Assets\\Scripts\\Environment\\Boulder.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-23T16:53:51.543Z"
             }

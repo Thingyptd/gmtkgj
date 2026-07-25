@@ -9,8 +9,8 @@ public class GridMovement : MonoBehaviour
 {
     [Header("Grid & Tilemaps")]
     public Grid grid;
-    public Tilemap collisionTilemap; // muri: sempre bloccanti
-    public Tilemap pitsTilemap;      // precipizi: letali (non bloccanti) per chi non vola
+    public Tilemap collisionTilemap; 
+    public Tilemap pitsTilemap;      
 
     [Header("Movement Settings")]
     public bool instantMove = true;
@@ -24,31 +24,24 @@ public class GridMovement : MonoBehaviour
     public float fallDuration = 0.4f;
 
     [Header("Pit Teeter")]
-    [Tooltip("Durata dello scivolamento verso il bordo: è anche la finestra di tempo per annullare")]
     public float teeterDuration = 0.6f;
-    [Tooltip("Quanto il personaggio si avvicina al pit prima di cadere (0 = resta fermo, 1 = arriva già al centro del pit)")]
     [Range(0f, 1f)] public float teeterLeanRatio = 0.45f;
-    [Tooltip("Durata dell'animazione di ritorno se annulli in tempo")]
     public float cancelReturnDuration = 0.15f;
 
     private bool isTeetering = false;
 
     [Header("Visual")]
-    [Tooltip("Trascina qui manualmente lo SpriteRenderer figlio")]
     public SpriteRenderer spriteRenderer;
+    private MovementAnimations movementAnimations;
 
-    [Header("Runtime Data (impostati da CharacterManager)")]
+    [Header("Runtime Data")]
     public CharacterData data;
     public int movesRemaining;
 
-    // Vera morte per esaurimento mosse: il Manager farà subentrare il prossimo personaggio
     public event Action<GridMovement> OnMovesExhausted;
 
-    // Caduta in un pit: incidente RECUPERABILE, stesso personaggio, il Manager deve riportarlo a terra
     public event Action<GridMovement> OnFellIntoPit;
 
-    // Invocato ogni volta che QUALSIASI personaggio tocca una cella di terra (non-pit):
-    // serve al Manager per tracciare l'ultima posizione sicura condivisa tra tutti i personaggi
     public event Action<Vector3> OnGroundCellEntered;
 
     public event Action<int, int> OnMovesChanged;
@@ -57,7 +50,6 @@ public class GridMovement : MonoBehaviour
 
     private PlayerControls controls;
 
-    // Stack delle direzioni attualmente premute, in ordine di pressione (l'ultima è la più recente)
     private List<Vector2Int> heldDirections = new List<Vector2Int>();
 
     private bool isMoving = false;
@@ -75,17 +67,12 @@ public class GridMovement : MonoBehaviour
         if (spriteRenderer == null)
             spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
-        if (spriteRenderer == null)
-            Debug.LogError($"[{name}] GridMovement non trova nessuno SpriteRenderer nei figli! Il colore del personaggio non verrà applicato.", this);
+        movementAnimations = GetComponent<MovementAnimations>();
     }
 
     void OnEnable() => controls.Enable();
     void OnDisable() => controls.Disable();
 
-    /// <summary>
-    /// Inizializza il personaggio con i dati del CharacterData e lo posiziona sulla griglia.
-    /// Chiamato da CharacterManager subito dopo l'Instantiate.
-    /// </summary>
     public void Initialize(CharacterData characterData, Vector3 spawnWorldPos, Tilemap walls, Tilemap pits)
     {
         data = characterData;
@@ -98,26 +85,26 @@ public class GridMovement : MonoBehaviour
         OnMovesChanged?.Invoke(movesRemaining, data.moveRange);
 
         if (spriteRenderer != null)
+        {
+            spriteRenderer.sprite = data.characterSprite;
             spriteRenderer.color = data.characterColor;
+        }
 
         targetPosition = SnapToGridCenter(spawnWorldPos);
         transform.position = targetPosition;
 
-        // Controllo immediato: se il personaggio nasce già su un pit e non vola, cade subito
-        // (caso: il predecessore è morto sopra un pit e il successivo eredita quella posizione)
         Vector3Int spawnCell = grid.WorldToCell(transform.position);
         bool spawnIsPit = pitsTilemap != null && pitsTilemap.HasTile(spawnCell);
 
         if (spawnIsPit && !data.canFlyOverPits)
         {
-            isDead = true; // blocca input durante l'animazione, non è una morte definitiva
+            isDead = true;
             StartCoroutine(FallAndRecover());
         }
         else if (!spawnIsPit)
         {
             OnGroundCellEntered?.Invoke(transform.position);
         }
-        // se spawnIsPit ma il personaggio vola, resta lì semplicemente, nessun aggiornamento del ground
     }
 
     void Update()
@@ -125,7 +112,7 @@ public class GridMovement : MonoBehaviour
         if (isDead) return;
 
         if (isTeetering)
-            return; // durante il bilico, la coroutine gestisce tutto l'input rilevante
+            return; 
 
         HandleInputEdges();
         HandleMovement();
@@ -143,11 +130,11 @@ public class GridMovement : MonoBehaviour
     {
         if (action.WasPressedThisFrame())
         {
-            // Rimuovi eventuali duplicati e metti questa direzione in cima allo stack
             heldDirections.Remove(direction);
             heldDirections.Add(direction);
 
-            // Un input "nuovo" prova subito un movimento (se non stiamo già muovendoci)
+            UpdateFacing(direction);
+
             if (!isMoving)
             {
                 TryMove(direction);
@@ -164,7 +151,6 @@ public class GridMovement : MonoBehaviour
     {
         if (!isMoving)
         {
-            // Hold-repeat: usa la direzione più recente ancora tenuta premuta
             if (allowHoldRepeat && heldDirections.Count > 0)
             {
                 repeatTimer -= Time.deltaTime;
@@ -194,8 +180,45 @@ public class GridMovement : MonoBehaviour
         Vector3Int currentCell = grid.WorldToCell(transform.position);
         Vector3Int nextCell = currentCell + new Vector3Int(direction.x, direction.y, 0);
 
-        if (!CanEnterCell(nextCell, direction))
-            return; // bloccato da muro o masso non spingibile: non consuma mosse
+        if (!CanEnterCell(nextCell))
+            return; 
+
+        Boulder boulder = FindBoulderAt(nextCell);
+        if (boulder != null)
+        {
+            if (data == null || !data.canPushBoulders)
+                return;
+
+            Vector3Int beyondCell = nextCell + new Vector3Int(direction.x, direction.y, 0);
+
+            bool beyondBlockedHard =
+                (collisionTilemap != null && collisionTilemap.HasTile(beyondCell)) ||
+                FindBoulderAt(beyondCell) != null;
+
+            if (beyondBlockedHard)
+                return; 
+
+            bool beyondIsPit = pitsTilemap != null && pitsTilemap.HasTile(beyondCell);
+
+            if (beyondIsPit)
+                boulder.FallIntoPit();
+            else
+                boulder.MoveToCell(beyondCell);
+
+            movesRemaining--;
+            OnMovesChanged?.Invoke(movesRemaining, data.moveRange);
+
+            if (movementAnimations != null)
+                movementAnimations.PlayMoveParticle(transform.position); 
+
+            if (movesRemaining <= 0)
+            {
+                isDead = true;
+                OnMovesExhausted?.Invoke(this);
+            }
+
+            return; 
+        }
 
         bool isPit = pitsTilemap != null && pitsTilemap.HasTile(nextCell);
         bool willFall = isPit && !data.canFlyOverPits;
@@ -203,8 +226,11 @@ public class GridMovement : MonoBehaviour
         if (willFall)
         {
             StartCoroutine(TeeterAndFall(direction, nextCell));
-            return; // spostamento e consumo mossa gestiti dentro la coroutine, SOLO se non annullato
+            return;
         }
+
+        if (movementAnimations != null)
+            movementAnimations.PlayMoveParticle(transform.position);
 
         Vector3 destination = grid.GetCellCenterWorld(nextCell);
         destination.z = transform.position.z;
@@ -234,6 +260,7 @@ public class GridMovement : MonoBehaviour
         {
             isDead = true;
             OnMovesExhausted?.Invoke(this);
+            return;
         }
 
         Stairs stairs = FindStairsAt(nextCell);
@@ -251,8 +278,6 @@ public class GridMovement : MonoBehaviour
         Vector3 pitCenter = grid.GetCellCenterWorld(nextCell);
         pitCenter.z = originalPos.z;
 
-        // Il punto "limite" verso cui il personaggio scivola: non necessariamente il centro del pit,
-        // ma quanto definito da teeterLeanRatio (es. 0.45 = quasi a metà tra le due celle)
         Vector3 edgeTarget = Vector3.Lerp(originalPos, pitCenter, teeterLeanRatio);
 
         InputAction oppositeAction = GetActionForDirection(-direction);
@@ -260,8 +285,6 @@ public class GridMovement : MonoBehaviour
         float t = 0f;
         bool cancelled = false;
 
-        // Scivolamento continuo: la posizione avanza gradualmente verso edgeTarget,
-        // frame per frame controlliamo se arriva l'input opposto per annullare
         while (t < teeterDuration)
         {
             if (oppositeAction != null && oppositeAction.WasPressedThisFrame())
@@ -278,15 +301,13 @@ public class GridMovement : MonoBehaviour
 
         if (cancelled)
         {
-            // Torna indietro dalla posizione ATTUALE (parziale, dove si trovava quando hai premuto) fino all'origine
             yield return StartCoroutine(LerpPosition(transform.position, originalPos, cancelReturnDuration));
             transform.position = originalPos;
             targetPosition = originalPos;
             isTeetering = false;
-            yield break; // nessuna mossa consumata, il personaggio riprende il controllo normale
+            yield break; 
         }
 
-        // Scivolamento completato senza annullare: qui avviene la vera caduta
         transform.position = edgeTarget;
         targetPosition = pitCenter;
 
@@ -294,7 +315,7 @@ public class GridMovement : MonoBehaviour
         OnMovesChanged?.Invoke(movesRemaining, data.moveRange);
 
         isTeetering = false;
-        isDead = true; // blocca input durante l'animazione di caduta vera e propria (shrink)
+        isDead = true;
         StartCoroutine(FallAndRecover());
     }
 
@@ -334,14 +355,9 @@ public class GridMovement : MonoBehaviour
 
         transform.localScale = Vector3.zero;
 
-        // Segnala al Manager: "sono caduto, riportami all'ultima cella di terra sicura"
         OnFellIntoPit?.Invoke(this);
     }
 
-    /// <summary>
-    /// Chiamato dal Manager dopo aver determinato l'ultima cella di terra sicura.
-    /// Ripristina posizione e scala, riabilita l'input, SENZA restituire la mossa persa nella caduta.
-    /// </summary>
     public void RecoverFromFall(Vector3 groundWorldPos)
     {
         Vector3 snapped = SnapToGridCenter(groundWorldPos);
@@ -351,11 +367,8 @@ public class GridMovement : MonoBehaviour
         isMoving = false;
         isDead = false;
 
-        // La cella di recupero è per definizione terra: aggiorna comunque il tracking globale
         OnGroundCellEntered?.Invoke(snapped);
 
-        // Se il personaggio era arrivato a 0 mosse proprio a causa della caduta,
-        // ora che è "salvo" è comunque a fine corsa: scatta la vera morte.
         if (movesRemaining <= 0)
         {
             isDead = true;
@@ -363,39 +376,10 @@ public class GridMovement : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Verifica se il personaggio può entrare in una cella, considerando muri e massi.
-    /// I pit NON bloccano l'ingresso: sono letali/recuperabili, non invalicabili.
-    /// </summary>
-    private bool CanEnterCell(Vector3Int cell, Vector2Int direction)
+    private bool CanEnterCell(Vector3Int cell)
     {
-        // Muri: sempre bloccanti, nessun potere li supera
         if (collisionTilemap != null && collisionTilemap.HasTile(cell))
             return false;
-
-        Boulder boulder = FindBoulderAt(cell);
-        if (boulder != null)
-        {
-            if (data == null || !data.canPushBoulders)
-                return false;
-
-            Vector3Int beyondCell = cell + new Vector3Int(direction.x, direction.y, 0);
-
-            // Ostacoli VERI oltre il masso: muro o altro masso bloccano comunque la spinta
-            bool beyondBlockedHard =
-                (collisionTilemap != null && collisionTilemap.HasTile(beyondCell)) ||
-                FindBoulderAt(beyondCell) != null;
-
-            if (beyondBlockedHard)
-                return false;
-
-            bool beyondIsPit = pitsTilemap != null && pitsTilemap.HasTile(beyondCell);
-
-            if (beyondIsPit)
-                boulder.FallIntoPit();   // il masso cade e viene distrutto
-            else
-                boulder.MoveToCell(beyondCell); // spinta normale su terra
-        }
 
         return true;
     }
@@ -429,13 +413,8 @@ public class GridMovement : MonoBehaviour
         return center;
     }
 
-    /// <summary>Posizione attuale in world space, utile al Manager per spawn/tracking.</summary>
     public Vector3 GetCurrentWorldPosition() => transform.position;
 
-    /// <summary>
-    /// Applica un cambio di piano: aggiorna i riferimenti alle Tilemap e riposiziona il personaggio
-    /// sullo spawn point del nuovo piano. Non consuma mosse, non è una morte.
-    /// </summary>
     public void ApplyFloorTransition(Tilemap newWalls, Tilemap newPits, Vector3 spawnWorldPos)
     {
         collisionTilemap = newWalls;
@@ -447,5 +426,13 @@ public class GridMovement : MonoBehaviour
         isMoving = false;
 
         OnGroundCellEntered?.Invoke(snapped);
+    }
+
+    private void UpdateFacing(Vector2Int direction)
+    {
+        if (spriteRenderer == null) return;
+        if (direction.x == 0) return; 
+
+        spriteRenderer.flipX = direction.x < 0; 
     }
 }
