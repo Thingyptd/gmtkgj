@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class SettingsUI : MonoBehaviour
 {
     [Header("Root & Tabs")]
-    public GameObject settingsRoot;
-    public GameObject videoTabPanel;
-    public GameObject audioTabPanel;
+    public PanelTransition settingsRootTransition;
+    public PanelTransition videoTabTransition;
+    public PanelTransition audioTabTransition;
     public Button videoTabButton;
     public Button audioTabButton;
     public Button backButton;
@@ -26,12 +26,13 @@ public class SettingsUI : MonoBehaviour
     public System.Action onBack;
 
     private List<Resolution> availableResolutions;
+    private bool showingVideo = true;
 
     void Start()
     {
-        videoTabButton.onClick.AddListener(() => ShowTab(true));
-        audioTabButton.onClick.AddListener(() => ShowTab(false));
-        backButton.onClick.AddListener(OnBackClicked);
+        videoTabButton.GetComponent<UIButtonAnimator>().SetAction(() => SwitchTab(true));
+        audioTabButton.GetComponent<UIButtonAnimator>().SetAction(() => SwitchTab(false));
+        backButton.GetComponent<UIButtonAnimator>().SetAction(OnBackClicked);
 
         masterVolumeSlider.onValueChanged.AddListener(v => GameSettings.MasterVolume = v);
         musicVolumeSlider.onValueChanged.AddListener(v => GameSettings.MusicVolume = v);
@@ -44,13 +45,14 @@ public class SettingsUI : MonoBehaviour
         BuildResolutionDropdown();
         LoadCurrentValuesIntoUI();
 
-        ShowTab(true);
+        settingsRootTransition.gameObject.SetActive(false);
+        videoTabTransition.gameObject.SetActive(false);
+        audioTabTransition.gameObject.SetActive(false);
     }
 
     private void BuildResolutionDropdown()
     {
         availableResolutions = new List<Resolution>(Screen.resolutions);
-
         List<string> options = new List<string>();
         foreach (var r in availableResolutions)
             options.Add($"{r.width} x {r.height} @ {Mathf.RoundToInt((float)r.refreshRateRatio.value)}Hz");
@@ -64,25 +66,20 @@ public class SettingsUI : MonoBehaviour
         masterVolumeSlider.SetValueWithoutNotify(GameSettings.MasterVolume);
         musicVolumeSlider.SetValueWithoutNotify(GameSettings.MusicVolume);
         sfxVolumeSlider.SetValueWithoutNotify(GameSettings.SfxVolume);
-
         fullscreenToggle.SetIsOnWithoutNotify(GameSettings.Fullscreen);
         vsyncToggle.SetIsOnWithoutNotify(GameSettings.Vsync);
 
         int savedResIndex = GameSettings.ResolutionIndex;
-        if (savedResIndex < 0)
-            savedResIndex = FindCurrentResolutionIndex();
-
+        if (savedResIndex < 0) savedResIndex = FindCurrentResolutionIndex();
         resolutionDropdown.SetValueWithoutNotify(savedResIndex);
     }
 
     private int FindCurrentResolutionIndex()
     {
         for (int i = 0; i < availableResolutions.Count; i++)
-        {
             if (availableResolutions[i].width == Screen.currentResolution.width &&
                 availableResolutions[i].height == Screen.currentResolution.height)
                 return i;
-        }
         return availableResolutions.Count - 1;
     }
 
@@ -93,22 +90,38 @@ public class SettingsUI : MonoBehaviour
         Screen.SetResolution(r.width, r.height, GameSettings.Fullscreen);
     }
 
-    private void ShowTab(bool video)
+    public void Open()
     {
-        videoTabPanel.SetActive(video);
-        audioTabPanel.SetActive(!video);
+        settingsRootTransition.gameObject.SetActive(true);
+        settingsRootTransition.Show(() => SwitchTab(true, instant: true));
+    }
+
+    private void SwitchTab(bool video, bool instant = false)
+    {
+        if (video == showingVideo && !instant) return;
+        showingVideo = video;
+
+        if (instant)
+        {
+            videoTabTransition.gameObject.SetActive(video);
+            audioTabTransition.gameObject.SetActive(!video);
+            if (video) videoTabTransition.Show(); else audioTabTransition.Show();
+            return;
+        }
+
+        if (video)
+        {
+            audioTabTransition.Hide(() => videoTabTransition.Show());
+        }
+        else
+        {
+            videoTabTransition.Hide(() => audioTabTransition.Show());
+        }
     }
 
     private void OnBackClicked()
     {
         GameSettings.Save();
-        settingsRoot.SetActive(false);
-        onBack?.Invoke();
-    }
-
-    public void Open()
-    {
-        settingsRoot.SetActive(true);
-        LoadCurrentValuesIntoUI();
+        settingsRootTransition.Hide(() => onBack?.Invoke());
     }
 }

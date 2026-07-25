@@ -422,81 +422,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 137136629}
   m_CullTransparentMesh: 1
---- !u!1 &154367924
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 154367925}
-  - component: {fileID: 154367927}
-  - component: {fileID: 154367926}
-  m_Layer: 5
-  m_Name: SettingsRoot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &154367925
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 154367924}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0088, y: 1.0088, z: 1.0088}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1617915772}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &154367926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 154367924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &154367927
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 154367924}
-  m_CullTransparentMesh: 1
 --- !u!1 &198432725
 GameObject:
   m_ObjectHideFlags: 0
@@ -1061,6 +986,7 @@ GameObject:
   - component: {fileID: 445329462}
   - component: {fileID: 445329464}
   - component: {fileID: 445329463}
+  - component: {fileID: 445329465}
   m_Layer: 5
   m_Name: AudioTabPanel
   m_TagString: Untagged
@@ -1128,6 +1054,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 445329461}
   m_CullTransparentMesh: 1
+--- !u!114 &445329465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445329461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b5ac58115ef9ef428b40be3797b13f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PanelTransition
+  direction: 1
+  slideDistance: 500
+  duration: 0.4
+  staggerChildren: 0
 --- !u!1 &550773149
 GameObject:
   m_ObjectHideFlags: 0
@@ -1277,6 +1219,7 @@ GameObject:
   - component: {fileID: 579885880}
   - component: {fileID: 579885879}
   - component: {fileID: 579885878}
+  - component: {fileID: 579885881}
   m_Layer: 5
   m_Name: AudioTabButton
   m_TagString: Untagged
@@ -1386,6 +1329,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 579885876}
   m_CullTransparentMesh: 1
+--- !u!114 &579885881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579885876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f159b8abec56f740998e988e5c84a2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonAnimator
+  hoverScale: 1.05
+  hoverDuration: 0.15
+  wiggleAngle: 8
+  wiggleDuration: 0.3
+  wiggleVibrato: 3
+  disabledWiggleAngle: 6
+  disabledWiggleDuration: 0.25
 --- !u!1 &708820085
 GameObject:
   m_ObjectHideFlags: 0
@@ -1473,6 +1435,7 @@ GameObject:
   - component: {fileID: 748490972}
   - component: {fileID: 748490971}
   - component: {fileID: 748490970}
+  - component: {fileID: 748490973}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -1582,6 +1545,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 748490968}
   m_CullTransparentMesh: 1
+--- !u!114 &748490973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748490968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f159b8abec56f740998e988e5c84a2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonAnimator
+  hoverScale: 1.05
+  hoverDuration: 0.15
+  wiggleAngle: 8
+  wiggleDuration: 0.3
+  wiggleVibrato: 3
+  disabledWiggleAngle: 6
+  disabledWiggleDuration: 0.25
 --- !u!1 &757181461
 GameObject:
   m_ObjectHideFlags: 0
@@ -1594,6 +1576,7 @@ GameObject:
   - component: {fileID: 757181465}
   - component: {fileID: 757181464}
   - component: {fileID: 757181463}
+  - component: {fileID: 757181466}
   m_Layer: 5
   m_Name: VideoTabButton
   m_TagString: Untagged
@@ -1703,6 +1686,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 757181461}
   m_CullTransparentMesh: 1
+--- !u!114 &757181466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757181461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f159b8abec56f740998e988e5c84a2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonAnimator
+  hoverScale: 1.05
+  hoverDuration: 0.15
+  wiggleAngle: 8
+  wiggleDuration: 0.3
+  wiggleVibrato: 3
+  disabledWiggleAngle: 6
+  disabledWiggleDuration: 0.25
 --- !u!1 &787905980
 GameObject:
   m_ObjectHideFlags: 0
@@ -2558,6 +2560,7 @@ GameObject:
   - component: {fileID: 1126033547}
   - component: {fileID: 1126033549}
   - component: {fileID: 1126033548}
+  - component: {fileID: 1126033550}
   m_Layer: 5
   m_Name: Logo
   m_TagString: Untagged
@@ -2622,6 +2625,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1126033546}
   m_CullTransparentMesh: 1
+--- !u!114 &1126033550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126033546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62a507bec2a98b3438cee3c5cdaa2fdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LogoIdleFloat
+  floatDistance: 10
+  floatDuration: 2
 --- !u!1 &1154436723
 GameObject:
   m_ObjectHideFlags: 0
@@ -3234,9 +3251,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 278d517deae57dd43bd4a27d74402606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SettingsUI
-  settingsRoot: {fileID: 2067992945}
-  videoTabPanel: {fileID: 1746058002}
-  audioTabPanel: {fileID: 445329461}
+  settingsRootTransition: {fileID: 2067992949}
+  videoTabTransition: {fileID: 1746058006}
+  audioTabTransition: {fileID: 445329465}
   videoTabButton: {fileID: 757181463}
   audioTabButton: {fileID: 579885878}
   backButton: {fileID: 1983336699}
@@ -3273,7 +3290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f974c1b3303554a984ca0730f6be1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuUI
-  mainPanel: {fileID: 2104287558}
+  mainPanelTransition: {fileID: 2104287562}
   playButton: {fileID: 1678507665}
   settingsButton: {fileID: 1723055878}
   quitButton: {fileID: 748490970}
@@ -4168,7 +4185,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 154367925}
   - {fileID: 2104287559}
   - {fileID: 2067992946}
   m_Father: {fileID: 0}
@@ -4365,6 +4381,7 @@ GameObject:
   - component: {fileID: 1678507667}
   - component: {fileID: 1678507666}
   - component: {fileID: 1678507665}
+  - component: {fileID: 1678507668}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -4474,6 +4491,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1678507663}
   m_CullTransparentMesh: 1
+--- !u!114 &1678507668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678507663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f159b8abec56f740998e988e5c84a2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonAnimator
+  hoverScale: 1.05
+  hoverDuration: 0.15
+  wiggleAngle: 8
+  wiggleDuration: 0.3
+  wiggleVibrato: 3
+  disabledWiggleAngle: 6
+  disabledWiggleDuration: 0.25
 --- !u!1 &1716956996
 GameObject:
   m_ObjectHideFlags: 0
@@ -4572,6 +4608,7 @@ GameObject:
   - component: {fileID: 1723055880}
   - component: {fileID: 1723055879}
   - component: {fileID: 1723055878}
+  - component: {fileID: 1723055881}
   m_Layer: 5
   m_Name: SettingsButton
   m_TagString: Untagged
@@ -4681,6 +4718,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1723055876}
   m_CullTransparentMesh: 1
+--- !u!114 &1723055881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723055876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f159b8abec56f740998e988e5c84a2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonAnimator
+  hoverScale: 1.05
+  hoverDuration: 0.15
+  wiggleAngle: 8
+  wiggleDuration: 0.3
+  wiggleVibrato: 3
+  disabledWiggleAngle: 6
+  disabledWiggleDuration: 0.25
 --- !u!1 &1742929213
 GameObject:
   m_ObjectHideFlags: 0
@@ -4728,6 +4784,7 @@ GameObject:
   - component: {fileID: 1746058003}
   - component: {fileID: 1746058005}
   - component: {fileID: 1746058004}
+  - component: {fileID: 1746058006}
   m_Layer: 5
   m_Name: VideoTabPanel
   m_TagString: Untagged
@@ -4795,6 +4852,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746058002}
   m_CullTransparentMesh: 1
+--- !u!114 &1746058006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746058002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b5ac58115ef9ef428b40be3797b13f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PanelTransition
+  direction: 0
+  slideDistance: 500
+  duration: 0.4
+  staggerChildren: 0
 --- !u!1 &1747646902
 GameObject:
   m_ObjectHideFlags: 0
@@ -5251,6 +5324,7 @@ GameObject:
   - component: {fileID: 1983336701}
   - component: {fileID: 1983336700}
   - component: {fileID: 1983336699}
+  - component: {fileID: 1983336702}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -5360,6 +5434,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1983336697}
   m_CullTransparentMesh: 1
+--- !u!114 &1983336702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983336697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f159b8abec56f740998e988e5c84a2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonAnimator
+  hoverScale: 1.05
+  hoverDuration: 0.15
+  wiggleAngle: 8
+  wiggleDuration: 0.3
+  wiggleVibrato: 3
+  disabledWiggleAngle: 6
+  disabledWiggleDuration: 0.25
 --- !u!1 &2005559845
 GameObject:
   m_ObjectHideFlags: 0
@@ -5597,6 +5690,7 @@ GameObject:
   - component: {fileID: 2067992946}
   - component: {fileID: 2067992948}
   - component: {fileID: 2067992947}
+  - component: {fileID: 2067992949}
   m_Layer: 5
   m_Name: SettingsPanel
   m_TagString: Untagged
@@ -5666,6 +5760,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2067992945}
   m_CullTransparentMesh: 1
+--- !u!114 &2067992949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067992945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b5ac58115ef9ef428b40be3797b13f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PanelTransition
+  direction: 1
+  slideDistance: 500
+  duration: 0.4
+  staggerChildren: 0
 --- !u!1 &2073069865
 GameObject:
   m_ObjectHideFlags: 0
@@ -5889,6 +5999,7 @@ GameObject:
   - component: {fileID: 2104287559}
   - component: {fileID: 2104287561}
   - component: {fileID: 2104287560}
+  - component: {fileID: 2104287562}
   m_Layer: 5
   m_Name: MainPanel
   m_TagString: Untagged
@@ -5933,7 +6044,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5957,6 +6068,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2104287558}
   m_CullTransparentMesh: 1
+--- !u!114 &2104287562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104287558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b5ac58115ef9ef428b40be3797b13f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PanelTransition
+  direction: 0
+  slideDistance: 500
+  duration: 0.4
+  staggerChildren: 0
 --- !u!1 &2120226231
 GameObject:
   m_ObjectHideFlags: 0

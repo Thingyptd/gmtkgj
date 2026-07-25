@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class MainMenuUI : MonoBehaviour
 {
     [Header("Main Panel")]
-    public GameObject mainPanel;
+    public PanelTransition mainPanelTransition;
     public Button playButton;
     public Button settingsButton;
     public Button quitButton;
@@ -15,23 +15,24 @@ public class MainMenuUI : MonoBehaviour
 
     void Start()
     {
-        playButton.onClick.AddListener(OnPlayClicked);
-        settingsButton.onClick.AddListener(OnSettingsClicked);
-        quitButton.onClick.AddListener(OnQuitClicked);
-        settingsUI.onBack = () => mainPanel.SetActive(true);
+        playButton.GetComponent<UIButtonAnimator>().SetAction(OnPlayClicked);
+        settingsButton.GetComponent<UIButtonAnimator>().SetAction(OnSettingsClicked);
+        quitButton.GetComponent<UIButtonAnimator>().SetAction(OnQuitClicked);
 
-        mainPanel.SetActive(true);
+        settingsUI.onBack = () => mainPanelTransition.Show();
+
+        mainPanelTransition.gameObject.SetActive(true);
+        mainPanelTransition.Show();
     }
 
     private void OnPlayClicked()
     {
-        SceneManager.LoadScene("BootstrapScene");
+        SceneManager.LoadScene("Bootstrap");
     }
 
     private void OnSettingsClicked()
     {
-        mainPanel.SetActive(false);
-        settingsUI.Open();
+        mainPanelTransition.Hide(() => settingsUI.Open());
     }
 
     private void OnQuitClicked()
