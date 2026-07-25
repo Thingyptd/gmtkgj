@@ -21,12 +21,11 @@ public class SettingsUI : MonoBehaviour
     [Header("Video Controls")]
     public TMP_Dropdown resolutionDropdown;
     public Toggle fullscreenToggle;
-    public TMP_Dropdown qualityDropdown;
     public Toggle vsyncToggle;
 
-    private List<Resolution> availableResolutions;
-
     public System.Action onBack;
+
+    private List<Resolution> availableResolutions;
 
     void Start()
     {
@@ -40,11 +39,9 @@ public class SettingsUI : MonoBehaviour
 
         fullscreenToggle.onValueChanged.AddListener(v => GameSettings.Fullscreen = v);
         vsyncToggle.onValueChanged.AddListener(v => GameSettings.Vsync = v);
-        qualityDropdown.onValueChanged.AddListener(v => GameSettings.QualityLevel = v);
         resolutionDropdown.onValueChanged.AddListener(OnResolutionChanged);
 
         BuildResolutionDropdown();
-        BuildQualityDropdown();
         LoadCurrentValuesIntoUI();
 
         ShowTab(true);
@@ -62,13 +59,6 @@ public class SettingsUI : MonoBehaviour
         resolutionDropdown.AddOptions(options);
     }
 
-    private void BuildQualityDropdown()
-    {
-        List<string> names = new List<string>(QualitySettings.names);
-        qualityDropdown.ClearOptions();
-        qualityDropdown.AddOptions(names);
-    }
-
     private void LoadCurrentValuesIntoUI()
     {
         masterVolumeSlider.SetValueWithoutNotify(GameSettings.MasterVolume);
@@ -77,7 +67,6 @@ public class SettingsUI : MonoBehaviour
 
         fullscreenToggle.SetIsOnWithoutNotify(GameSettings.Fullscreen);
         vsyncToggle.SetIsOnWithoutNotify(GameSettings.Vsync);
-        qualityDropdown.SetValueWithoutNotify(GameSettings.QualityLevel);
 
         int savedResIndex = GameSettings.ResolutionIndex;
         if (savedResIndex < 0)
@@ -120,6 +109,6 @@ public class SettingsUI : MonoBehaviour
     public void Open()
     {
         settingsRoot.SetActive(true);
-        LoadCurrentValuesIntoUI(); // rilegge nel caso siano cambiate da altrove
+        LoadCurrentValuesIntoUI();
     }
 }

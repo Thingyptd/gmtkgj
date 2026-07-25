@@ -1,41 +1,60 @@
 using UnityEngine;
-using UnityEngine.Audio;
+using FMOD.Studio;
+using FMODUnity;
 
-/// <summary>
-/// Gestisce lettura/scrittura delle impostazioni persistenti (PlayerPrefs) e la loro applicazione al motore.
-/// Nessuna UI qui dentro: SettingsUI legge/scrive attraverso questa classe.
-/// </summary>
 public static class GameSettings
 {
     // --- Chiavi PlayerPrefs ---
     private const string MasterVolumeKey = "audio_master";
     private const string MusicVolumeKey = "audio_music";
     private const string SfxVolumeKey = "audio_sfx";
-
     private const string ResolutionIndexKey = "video_resolution_index";
     private const string FullscreenKey = "video_fullscreen";
-    private const string QualityLevelKey = "video_quality";
     private const string VsyncKey = "video_vsync";
 
-    // --- Audio ---
+    // --- Audio (via FMOD VCA) ---
+    private static VCA masterVCA;
+    private static VCA musicVCA;
+    private static VCA sfxVCA;
+
+    private static void EnsureVCAsLoaded()
+    {
+        if (!masterVCA.isValid()) masterVCA = RuntimeManager.GetVCA("vca:/Master");
+        if (!musicVCA.isValid()) musicVCA = RuntimeManager.GetVCA("vca:/Music");
+        if (!sfxVCA.isValid()) sfxVCA = RuntimeManager.GetVCA("vca:/SFX");
+    }
+
     public static float MasterVolume
     {
         get => PlayerPrefs.GetFloat(MasterVolumeKey, 1f);
-        set { PlayerPrefs.SetFloat(MasterVolumeKey, value); AudioListener.volume = value; }
+        set
+        {
+            PlayerPrefs.SetFloat(MasterVolumeKey, value);
+            EnsureVCAsLoaded();
+            masterVCA.setVolume(value);
+        }
     }
 
     public static float MusicVolume
     {
         get => PlayerPrefs.GetFloat(MusicVolumeKey, 1f);
-        set => PlayerPrefs.SetFloat(MusicVolumeKey, value);
-        // Se in futuro usi un AudioMixer, qui dentro faresti anche
-        // mixer.SetFloat("MusicVolume", Mathf.Log10(Mathf.Max(value, 0.0001f)) * 20f);
+        set
+        {
+            PlayerPrefs.SetFloat(MusicVolumeKey, value);
+            EnsureVCAsLoaded();
+            musicVCA.setVolume(value);
+        }
     }
 
     public static float SfxVolume
     {
         get => PlayerPrefs.GetFloat(SfxVolumeKey, 1f);
-        set => PlayerPrefs.SetFloat(SfxVolumeKey, value);
+        set
+        {
+            PlayerPrefs.SetFloat(SfxVolumeKey, value);
+            EnsureVCAsLoaded();
+            sfxVCA.setVolume(value);
+        }
     }
 
     // --- Video ---
@@ -43,12 +62,6 @@ public static class GameSettings
     {
         get => PlayerPrefs.GetInt(FullscreenKey, Screen.fullScreen ? 1 : 0) == 1;
         set { PlayerPrefs.SetInt(FullscreenKey, value ? 1 : 0); Screen.fullScreen = value; }
-    }
-
-    public static int QualityLevel
-    {
-        get => PlayerPrefs.GetInt(QualityLevelKey, QualitySettings.GetQualityLevel());
-        set { PlayerPrefs.SetInt(QualityLevelKey, value); QualitySettings.SetQualityLevel(value, true); }
     }
 
     public static bool Vsync
@@ -59,16 +72,18 @@ public static class GameSettings
 
     public static int ResolutionIndex
     {
-        get => PlayerPrefs.GetInt(ResolutionIndexKey, -1); // -1 = non ancora impostato
+        get => PlayerPrefs.GetInt(ResolutionIndexKey, -1);
         set => PlayerPrefs.SetInt(ResolutionIndexKey, value);
     }
 
-    /// <summary>Applica TUTTE le impostazioni salvate. Chiamalo una volta all'avvio del gioco (es. in Bootstrap).</summary>
     public static void ApplyAll()
     {
-        AudioListener.volume = MasterVolume;
+        EnsureVCAsLoaded();
+        masterVCA.setVolume(MasterVolume);
+        musicVCA.setVolume(MusicVolume);
+        sfxVCA.setVolume(SfxVolume);
+
         Screen.fullScreen = Fullscreen;
-        QualitySettings.SetQualityLevel(QualityLevel, true);
         QualitySettings.vSyncCount = Vsync ? 1 : 0;
 
         int resIndex = ResolutionIndex;
