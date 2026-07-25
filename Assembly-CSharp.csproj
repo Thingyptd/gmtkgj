@@ -71,10 +71,13 @@
     <Compile Include="Assets\Scripts\Environment\Boulder.cs" />
     <Compile Include="Assets\Scripts\Player\GridMovement.cs" />
     <Compile Include="Assets\Scripts\UI\TeamSelectionUI.cs" />
+    <Compile Include="Assets\Scripts\UI\GameSettings.cs" />
     <Compile Include="Assets\Scripts\Environment\Stairs.cs" />
+    <Compile Include="Assets\Scripts\UI\MainMenuUI.cs" />
     <Compile Include="Assets\Scripts\Player\MovementAnimations.cs" />
     <Compile Include="Assets\Scripts\Player\CharacterManager.cs" />
     <Compile Include="Assets\Scripts\Game\ScreenTransition.cs" />
+    <Compile Include="Assets\Scripts\UI\SettingsUI.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\CharacterData.cs" />
     <Compile Include="Assets\Scripts\Game\GameSession.cs" />

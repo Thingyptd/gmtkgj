@@ -24,6 +24,7 @@ public class CharacterManager : MonoBehaviour
     private GridMovement currentCharacter;
     private Vector3 lastPosition;
     private Vector3 lastGroundPosition;
+    private bool lastFacingLeft = false;
 
     void Awake()
     {
@@ -61,7 +62,7 @@ public class CharacterManager : MonoBehaviour
         currentCharacter.OnGroundCellEntered += HandleGroundTouched;
         currentCharacter.OnStairsEntered += HandleStairsEntered;
 
-        currentCharacter.Initialize(data, lastPosition, collisionTilemap, pitsTilemap);
+        currentCharacter.Initialize(data, lastPosition, collisionTilemap, pitsTilemap, lastFacingLeft);
 
         // Se il personaggio arriva da un piano precedente con mosse già parzialmente consumate,
         // sovrascrivi movesRemaining con quello salvato in sessione
@@ -93,6 +94,8 @@ public class CharacterManager : MonoBehaviour
     {
         CharacterData deadData = GameSession.Instance.CurrentCharacterData;
         Debug.Log($"{deadData.characterName} ha esaurito le mosse.");
+
+        lastFacingLeft = deadCharacter.IsFacingLeft;
 
         lastPosition = deadCharacter.GetCurrentWorldPosition();
 

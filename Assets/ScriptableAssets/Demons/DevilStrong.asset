@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: DevilStrong
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterName: Strong
-  characterColor: {r: 0.5372549, g: 0.2719875, b: 0.03921568, a: 1}
+  characterColor: {r: 1, g: 1, b: 1, a: 1}
+  idleFrame1: {fileID: -1005800055, guid: b55cd4e3cc574b24b8cc5022b35ecca2, type: 3}
+  idleFrame2: {fileID: 467491885, guid: b55cd4e3cc574b24b8cc5022b35ecca2, type: 3}
   moveRange: 7
   canPushBoulders: 1
   canFlyOverPits: 0
+  isImmuneToTraps: 0

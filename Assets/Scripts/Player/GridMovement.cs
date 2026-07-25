@@ -9,8 +9,8 @@ public class GridMovement : MonoBehaviour
 {
     [Header("Grid & Tilemaps")]
     public Grid grid;
-    public Tilemap collisionTilemap; 
-    public Tilemap pitsTilemap;      
+    public Tilemap collisionTilemap;
+    public Tilemap pitsTilemap;
 
     [Header("Movement Settings")]
     public bool instantMove = true;
@@ -57,6 +57,8 @@ public class GridMovement : MonoBehaviour
     private float repeatTimer;
     private bool isDead = false;
 
+    public bool IsFacingLeft => spriteRenderer != null && spriteRenderer.flipX;
+
     void Awake()
     {
         controls = new PlayerControls();
@@ -73,7 +75,7 @@ public class GridMovement : MonoBehaviour
     void OnEnable() => controls.Enable();
     void OnDisable() => controls.Disable();
 
-    public void Initialize(CharacterData characterData, Vector3 spawnWorldPos, Tilemap walls, Tilemap pits)
+    public void Initialize(CharacterData characterData, Vector3 spawnWorldPos, Tilemap walls, Tilemap pits, bool initialFacingLeft)
     {
         data = characterData;
         movesRemaining = data.moveRange;
@@ -86,9 +88,12 @@ public class GridMovement : MonoBehaviour
 
         if (spriteRenderer != null)
         {
-            spriteRenderer.sprite = data.characterSprite;
             spriteRenderer.color = data.characterColor;
+            spriteRenderer.flipX = initialFacingLeft;
         }
+
+        if (movementAnimations != null)
+            movementAnimations.SetIdleFrames(data.idleFrame1, data.idleFrame2);
 
         targetPosition = SnapToGridCenter(spawnWorldPos);
         transform.position = targetPosition;
@@ -109,12 +114,17 @@ public class GridMovement : MonoBehaviour
 
     void Update()
     {
-        if (isDead) return;
-
         if (isTeetering)
-            return; 
+            return;
 
-        HandleInputEdges();
+        // Blocchiamo SOLO nuovo input quando il personaggio è morto, non il completamento
+        // dell'animazione di movimento già iniziata: senza questa distinzione, un personaggio
+        // che muore esaurendo l'ultima mossa restava visivamente fermo (con instantMove = false)
+        // perché HandleMovement() non veniva più chiamato, e con esso l'interpolazione verso
+        // targetPosition non arrivava mai a completarsi.
+        if (!isDead)
+            HandleInputEdges();
+
         HandleMovement();
     }
 
@@ -151,7 +161,10 @@ public class GridMovement : MonoBehaviour
     {
         if (!isMoving)
         {
-            if (allowHoldRepeat && heldDirections.Count > 0)
+            // Il repeat da tenuta premuta va comunque limitato al caso "vivo": se il personaggio
+            // è morto, TryMove() lo bloccherebbe comunque (guardia isDead), ma evitiamo pure
+            // di provarci per chiarezza.
+            if (!isDead && allowHoldRepeat && heldDirections.Count > 0)
             {
                 repeatTimer -= Time.deltaTime;
                 if (repeatTimer <= 0f)
@@ -181,7 +194,7 @@ public class GridMovement : MonoBehaviour
         Vector3Int nextCell = currentCell + new Vector3Int(direction.x, direction.y, 0);
 
         if (!CanEnterCell(nextCell))
-            return; 
+            return;
 
         Boulder boulder = FindBoulderAt(nextCell);
         if (boulder != null)
@@ -196,7 +209,7 @@ public class GridMovement : MonoBehaviour
                 FindBoulderAt(beyondCell) != null;
 
             if (beyondBlockedHard)
-                return; 
+                return;
 
             bool beyondIsPit = pitsTilemap != null && pitsTilemap.HasTile(beyondCell);
 
@@ -209,7 +222,7 @@ public class GridMovement : MonoBehaviour
             OnMovesChanged?.Invoke(movesRemaining, data.moveRange);
 
             if (movementAnimations != null)
-                movementAnimations.PlayMoveParticle(transform.position); 
+                movementAnimations.PlayMoveParticle(transform.position);
 
             if (movesRemaining <= 0)
             {
@@ -217,7 +230,7 @@ public class GridMovement : MonoBehaviour
                 OnMovesExhausted?.Invoke(this);
             }
 
-            return; 
+            return;
         }
 
         bool isPit = pitsTilemap != null && pitsTilemap.HasTile(nextCell);
@@ -305,7 +318,7 @@ public class GridMovement : MonoBehaviour
             transform.position = originalPos;
             targetPosition = originalPos;
             isTeetering = false;
-            yield break; 
+            yield break;
         }
 
         transform.position = edgeTarget;
@@ -431,8 +444,14 @@ public class GridMovement : MonoBehaviour
     private void UpdateFacing(Vector2Int direction)
     {
         if (spriteRenderer == null) return;
-        if (direction.x == 0) return; 
+        if (direction.x == 0) return;
 
-        spriteRenderer.flipX = direction.x < 0; 
+        spriteRenderer.flipX = direction.x > 0;
+    }
+
+    public void SetInitialFacing(bool facingLeft)
+    {
+        if (spriteRenderer != null)
+            spriteRenderer.flipX = facingLeft;
     }
 }

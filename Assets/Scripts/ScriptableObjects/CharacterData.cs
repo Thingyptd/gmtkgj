@@ -6,7 +6,9 @@ public class CharacterData : ScriptableObject
     [Header("Identità")]
     public string characterName = "Character";
     public Color characterColor = Color.white;
-    public Sprite characterSprite;
+
+    public Sprite idleFrame1;
+    public Sprite idleFrame2;
 
     [Header("Statistiche")]
     public int moveRange = 5;

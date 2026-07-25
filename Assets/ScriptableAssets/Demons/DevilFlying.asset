@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: DevilFlying
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterName: Flying
-  characterColor: {r: 0, g: 0.7830189, b: 0.36181173, a: 1}
+  characterColor: {r: 1, g: 1, b: 1, a: 1}
+  idleFrame1: {fileID: 1157252297, guid: b55cd4e3cc574b24b8cc5022b35ecca2, type: 3}
+  idleFrame2: {fileID: -1849854346, guid: b55cd4e3cc574b24b8cc5022b35ecca2, type: 3}
   moveRange: 9
   canPushBoulders: 0
   canFlyOverPits: 1
+  isImmuneToTraps: 0

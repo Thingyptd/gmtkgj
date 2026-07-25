@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterName: Base
   characterColor: {r: 1, g: 1, b: 1, a: 1}
-  characterSprite: {fileID: 21300000, guid: 9ed27788e3230c04c84bad493f24a285, type: 3}
+  idleFrame1: {fileID: 2109467370459087160, guid: b55cd4e3cc574b24b8cc5022b35ecca2, type: 3}
+  idleFrame2: {fileID: 5979570067562018965, guid: b55cd4e3cc574b24b8cc5022b35ecca2, type: 3}
   moveRange: 10
   canPushBoulders: 0
   canFlyOverPits: 0

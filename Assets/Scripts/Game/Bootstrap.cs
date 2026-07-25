@@ -5,6 +5,8 @@ public class Bootstrap : MonoBehaviour
 {
     void Start()
     {
+        GameSettings.ApplyAll();
+
         if (GameSession.Instance != null && GameSession.Instance.floorSceneNames.Count > 0)
         {
             SceneManager.LoadScene(GameSession.Instance.floorSceneNames[0]);
