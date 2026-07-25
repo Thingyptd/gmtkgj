@@ -19,9 +19,9 @@ public static class GameSettings
 
     private static void EnsureVCAsLoaded()
     {
-        if (!masterVCA.isValid()) masterVCA = RuntimeManager.GetVCA("vca:/Master");
-        if (!musicVCA.isValid()) musicVCA = RuntimeManager.GetVCA("vca:/Music");
-        if (!sfxVCA.isValid()) sfxVCA = RuntimeManager.GetVCA("vca:/SFX");
+        //if (!masterVCA.isValid()) masterVCA = RuntimeManager.GetVCA("vca:/Master");
+        //if (!musicVCA.isValid()) musicVCA = RuntimeManager.GetVCA("vca:/Music");
+        //if (!sfxVCA.isValid()) sfxVCA = RuntimeManager.GetVCA("vca:/SFX");
     }
 
     public static float MasterVolume

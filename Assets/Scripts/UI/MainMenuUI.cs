@@ -25,7 +25,7 @@ public class MainMenuUI : MonoBehaviour
 
     private void OnPlayClicked()
     {
-        SceneManager.LoadScene("Bootstrap");
+        SceneManager.LoadScene("BootstrapScene");
     }
 
     private void OnSettingsClicked()
