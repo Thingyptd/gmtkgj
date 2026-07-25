@@ -1431,6 +1431,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="FMODUnityEditor.csproj">
+      <Project>{3A673309-9BD8-703F-9C31-8E44F207D46F}</Project>
+      <Name>FMODUnityEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="FMODUnityHaptics.csproj">
+      <Project>{8D3B915A-4C67-DCB3-1E03-31806F4D8DCE}</Project>
+      <Name>FMODUnityHaptics</Name>
+    </ProjectReference>
+    <ProjectReference Include="FMODUnityResonance.csproj">
+      <Project>{15C8B6F0-90D9-DCD7-388A-A8A77047FE5A}</Project>
+      <Name>FMODUnityResonance</Name>
+    </ProjectReference>
+    <ProjectReference Include="FMODUnity.csproj">
+      <Project>{B0311ACA-81B4-C09F-D5E1-B07A6806D21B}</Project>
+      <Name>FMODUnity</Name>
+    </ProjectReference>
+    <ProjectReference Include="FMODUnityResonanceEditor.csproj">
+      <Project>{2A78BF78-B395-5C7F-7FB6-F34A85800AAF}</Project>
+      <Name>FMODUnityResonanceEditor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
