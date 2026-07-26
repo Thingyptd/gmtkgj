@@ -57,6 +57,9 @@ public class AudioManager : MonoBehaviour
     {
         ambianceEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         ambianceEventInstance.release();
+
+        
+
         //musicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         //musicInstance.release();
     }

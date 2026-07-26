@@ -14,9 +14,10 @@ public class FMODEvents : MonoBehaviour
     [Serializable]
     public class UISoundsHolder
     {
-        public EventReference ButtonClick;
+        public EventReference Select;
         public EventReference Hover;
         public EventReference Pause;
+        public EventReference Start;
     }
 
     [Serializable]
@@ -45,9 +46,24 @@ public class FMODEvents : MonoBehaviour
     {
         RuntimeManager.PlayOneShot(PlayerSounds.Movement);
     }
- 
+
     public void PlaylaserSound()
     {
         RuntimeManager.PlayOneShot(SFX.Laser);
+    }
+
+    public void PlaySelectSound()
+    {
+        RuntimeManager.PlayOneShot(UISounds.Select);
+    }
+
+    public void PlayHoverSound()
+    {
+        RuntimeManager.PlayOneShot(UISounds.Hover);
+    }
+
+    public void PlayStartSound()
+    {
+        RuntimeManager.PlayOneShot(UISounds.Start);
     }
 }

@@ -27,6 +27,7 @@ public class MainMenuUI : MonoBehaviour
 
     private void OnPlayClicked()
     {
+        FMODEvents.Instance.PlayStartSound();
         SceneManager.LoadScene("Bootstrap");
     }
 
