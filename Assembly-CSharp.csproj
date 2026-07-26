@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Game\Bootstrap.cs" />
+    <Compile Include="Assets\Scripts\Game\ButtonPuzzleManager.cs" />
     <Compile Include="Assets\Scripts\Environment\DeathTrap.cs" />
     <Compile Include="Assets\Scripts\Environment\LevelButton.cs" />
     <Compile Include="Assets\Scripts\UI\UIAnimations.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Assets\Scripts\UI\SettingsUI.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\Game\GameSession.cs" />
+    <Compile Include="Assets\Scripts\CutsceneUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
