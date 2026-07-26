@@ -219,6 +219,7 @@ public class GridMovement : MonoBehaviour
         if (willFall)
         {
             StartCoroutine(TeeterAndFall(direction, nextCell));
+            FMODEvents.Instance.PlayFallSound();
             return;
         }
 

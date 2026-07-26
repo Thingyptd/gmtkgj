@@ -54,20 +54,20 @@ MonoBehaviour:
         Data4: 1238603866
       Path: event:/SFX/Move
   UISounds:
-    ButtonClick:
+    Select:
       Guid:
-        Data1: 0
-        Data2: 0
-        Data3: 0
-        Data4: 0
-      Path: 
+        Data1: -1278615843
+        Data2: 1310152514
+        Data3: -2021007971
+        Data4: -819147317
+      Path: event:/UI/Select
     Hover:
       Guid:
-        Data1: 0
-        Data2: 0
-        Data3: 0
-        Data4: 0
-      Path: 
+        Data1: 907870704
+        Data2: 1164121856
+        Data3: -297544829
+        Data4: -253179847
+      Path: event:/UI/Hover
     Pause:
       Guid:
         Data1: 0
@@ -75,6 +75,13 @@ MonoBehaviour:
         Data3: 0
         Data4: 0
       Path: 
+    Start:
+      Guid:
+        Data1: 1294967355
+        Data2: 1197296314
+        Data3: -376041330
+        Data4: 435883986
+      Path: event:/UI/Start
   SFX:
     Smash:
       Guid:
@@ -90,6 +97,13 @@ MonoBehaviour:
         Data3: -654411850
         Data4: -1484634632
       Path: event:/SFX/Laser
+    Fall:
+      Guid:
+        Data1: -1757563355
+        Data2: 1135798606
+        Data3: 1919887529
+        Data4: 421332867
+      Path: event:/SFX/Falling
 --- !u!114 &1534308960359059641
 MonoBehaviour:
   m_ObjectHideFlags: 0

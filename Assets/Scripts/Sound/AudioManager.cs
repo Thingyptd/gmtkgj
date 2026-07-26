@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
@@ -15,59 +13,74 @@ public class AudioManager : MonoBehaviour
     private EventInstance musicInstance;
     [field: Header("Music")]
     [field: SerializeField] public EventReference music { get; private set; }
+
     private Bus SFXBus;
     private Bus musicBus;
 
-
-
     private void Awake()
     {
-        if (instance != null)
+        // Singleton robusto: tieni solo la prima istanza
+        if (instance != null && instance != this)
         {
-            UnityEngine.Debug.LogError("Found more than one Audio Manager in the scene.");
+            Destroy(gameObject);
+            return;
         }
+
         instance = this;
+        DontDestroyOnLoad(gameObject);
+
         SFXBus = RuntimeManager.GetBus("bus:/SFX");
         musicBus = RuntimeManager.GetBus("bus:/MUSIC");
-
-    }
-    public static void PlayOneShot(EventReference sound, Vector3 worldPos)
-    {
-        RuntimeManager.PlayOneShot(sound, worldPos);
     }
 
     private void Start()
     {
         InitializeAmbience(ambience);
-        InitializeMusic(music);
+        InitializeMusic(music); // avvia una sola volta
     }
+
+    public static void PlayOneShot(EventReference sound, Vector3 worldPos)
+    {
+        RuntimeManager.PlayOneShot(sound, worldPos);
+    }
+
     private void InitializeAmbience(EventReference ambienceReference)
     {
+        if (ambianceEventInstance.isValid()) return; // evita doppie istanze
+
         ambianceEventInstance = RuntimeManager.CreateInstance(ambienceReference);
         ambianceEventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject));
+
         if (!ambianceEventInstance.isValid())
         {
             UnityEngine.Debug.LogError("Ambience event not found");
             return;
         }
+
         ambianceEventInstance.start();
-    }
-
-    public void OnDestroy()
-    {
-        ambianceEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        ambianceEventInstance.release();
-
-        
-
-        //musicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        //musicInstance.release();
     }
 
     private void InitializeMusic(EventReference eventReference)
     {
+        if (musicInstance.isValid()) return; // evita doppie istanze
+
         musicInstance = RuntimeManager.CreateInstance(eventReference);
+
+        if (!musicInstance.isValid())
+        {
+            UnityEngine.Debug.LogError("Music event not found");
+            return;
+        }
+
         musicInstance.start();
+    }
+
+    public void StopMusic()
+    {
+        if (!musicInstance.isValid()) return;
+        musicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        musicInstance.release();
+        musicInstance.clearHandle();
     }
 
     public void SetSFXVolume(float value)
@@ -83,15 +96,33 @@ public class AudioManager : MonoBehaviour
 
     public float GetSFXVolume()
     {
-        var sfxVolume = 0f;
-        SFXBus.getVolume(out sfxVolume);
+        SFXBus.getVolume(out float sfxVolume);
         return sfxVolume;
     }
 
     public float GetMusicVolume()
     {
-        var musicVolume = 0f;
-        musicBus.getVolume(out musicVolume);
+        musicBus.getVolume(out float musicVolume);
         return musicVolume;
+    }
+
+    private void OnDestroy()
+    {
+        // Solo l'istanza vera fa cleanup
+        if (instance != this) return;
+
+        if (ambianceEventInstance.isValid())
+        {
+            ambianceEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            ambianceEventInstance.release();
+        }
+
+        if (musicInstance.isValid())
+        {
+            musicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            musicInstance.release();
+        }
+
+        instance = null;
     }
 }

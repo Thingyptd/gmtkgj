@@ -148,6 +148,7 @@ public class TeamSelectionUI : MonoBehaviour
 
         SetAvailableItemSelected(index, true, selectedOrder.Count);
         RefreshUI();
+        FMODEvents.Instance.PlaySelectSound();
     }
 
     private void OnUndoClicked()
@@ -161,6 +162,7 @@ public class TeamSelectionUI : MonoBehaviour
         if (index >= 0) SetAvailableItemSelected(index, false, 0);
 
         RefreshUI();
+        FMODEvents.Instance.PlaySelectSound();
     }
 
     private void SetAvailableItemSelected(int index, bool selected, int orderNumber)
