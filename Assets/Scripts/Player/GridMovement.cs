@@ -161,9 +161,6 @@ public class GridMovement : MonoBehaviour
     {
         if (!isMoving)
         {
-            // Il repeat da tenuta premuta va comunque limitato al caso "vivo": se il personaggio
-            // è morto, TryMove() lo bloccherebbe comunque (guardia isDead), ma evitiamo pure
-            // di provarci per chiarezza.
             if (!isDead && allowHoldRepeat && heldDirections.Count > 0)
             {
                 repeatTimer -= Time.deltaTime;
@@ -217,6 +214,9 @@ public class GridMovement : MonoBehaviour
                 boulder.FallIntoPit();
             else
                 boulder.MoveToCell(beyondCell);
+
+            if (CameraShake.Instance != null)
+                CameraShake.Instance.ShakeBoulderPush();
 
             movesRemaining--;
             OnMovesChanged?.Invoke(movesRemaining, data.moveRange);

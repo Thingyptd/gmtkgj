@@ -29,10 +29,14 @@ public class DivineBlastEffect : MonoBehaviour
     public void Play()
     {
         if (anim == null || anim.clip == null)
-        {
             return;
-        }
+
+        if (!anim.gameObject.activeSelf)
+            anim.gameObject.SetActive(true);
 
         anim.Play(anim.clip.name);
+
+        if (CameraShake.Instance != null)
+            CameraShake.Instance.ShakeBlast();
     }
 }
