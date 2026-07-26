@@ -326,6 +326,7 @@ GameObject:
   - component: {fileID: 1180246074}
   - component: {fileID: 1180246073}
   - component: {fileID: 1180246072}
+  - component: {fileID: 1180246075}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -340,7 +341,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1180246071}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1180246073
 Camera:
   m_ObjectHideFlags: 0
@@ -407,6 +408,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1180246075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180246071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioListener
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!1 &1551299617
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,6 +955,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2061373734}
   m_CullTransparentMesh: 1
+--- !u!1001 &1516419703032373463
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1216800309442975996, guid: d2c30718340ea724cb6df2870d33ef03, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -174.45715
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216800309442975996, guid: d2c30718340ea724cb6df2870d33ef03, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 354.9603
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216800309442975996, guid: d2c30718340ea724cb6df2870d33ef03, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216800309442975996, guid: d2c30718340ea724cb6df2870d33ef03, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216800309442975996, guid: d2c30718340ea724cb6df2870d33ef03, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216800309442975996, guid: d2c30718340ea724cb6df2870d33ef03, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216800309442975996, guid: d2c30718340ea724cb6df2870d33ef03, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216800309442975996, guid: d2c30718340ea724cb6df2870d33ef03, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216800309442975996, guid: d2c30718340ea724cb6df2870d33ef03, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216800309442975996, guid: d2c30718340ea724cb6df2870d33ef03, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8827783517289763612, guid: d2c30718340ea724cb6df2870d33ef03, type: 3}
+      propertyPath: m_Name
+      value: FMODEvents
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d2c30718340ea724cb6df2870d33ef03, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -948,3 +1020,4 @@ SceneRoots:
   - {fileID: 1957542755}
   - {fileID: 1678086701}
   - {fileID: 427394479}
+  - {fileID: 1516419703032373463}

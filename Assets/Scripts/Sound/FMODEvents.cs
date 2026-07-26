@@ -23,7 +23,7 @@ public class FMODEvents : MonoBehaviour
     [Serializable]
     public class SFXHolder
     {
-        public EventReference Smash;
+        public EventReference Boulder;
         public EventReference Laser;
         public EventReference Fall;
     }
@@ -71,5 +71,10 @@ public class FMODEvents : MonoBehaviour
     public void PlayFallSound()
     {
         RuntimeManager.PlayOneShot(SFX.Fall);
+    }
+
+    public void PlayBoulderSound()
+    {
+        RuntimeManager.PlayOneShot(SFX.Boulder);
     }
 }

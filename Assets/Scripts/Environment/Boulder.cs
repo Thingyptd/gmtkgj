@@ -26,6 +26,7 @@ public class Boulder : MonoBehaviour
         Vector3 worldPos = grid.GetCellCenterWorld(cell);
         worldPos.z = transform.position.z;
         transform.position = worldPos;
+        FMODEvents.Instance.PlayBoulderSound();
     }
 
     public void FallIntoPit()
