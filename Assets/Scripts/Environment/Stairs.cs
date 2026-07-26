@@ -31,6 +31,5 @@ public class Stairs : MonoBehaviour
     public void Unlock()
     {
         IsUnlocked = true;
-        FMODEvents.Instance.PlayStartSound();
     }
 }

@@ -104,6 +104,7 @@ public class CharacterManager : MonoBehaviour
         ScreenTransition.Instance.Close(() =>
         {
             GameSession.Instance.GoToNextFloor();
+            FMODEvents.Instance.PlayStartSound();
         });
     }
 
