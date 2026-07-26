@@ -34,7 +34,7 @@ public class SelectionItemAnimator : MonoBehaviour, IPointerEnterHandler, IPoint
         image = GetComponent<Image>();
         baseScale = rect.localScale;
 
-        button.transition = Selectable.Transition.None; 
+        button.transition = Selectable.Transition.None;
 
         if (image != null)
             image.color = idleColor;
@@ -54,7 +54,7 @@ public class SelectionItemAnimator : MonoBehaviour, IPointerEnterHandler, IPoint
         if (image == null) return;
 
         image.DOKill();
-        image.DOColor(baseColor, colorTweenDuration);
+        image.DOColor(locked ? baseColor : idleColor, colorTweenDuration);
 
         rect.DOKill();
         rect.DOScale(baseScale, hoverScaleDuration);
@@ -62,9 +62,10 @@ public class SelectionItemAnimator : MonoBehaviour, IPointerEnterHandler, IPoint
 
     private void HandleValidClick()
     {
+        pendingAction?.Invoke();
+
         rect.DOKill();
-        rect.DOPunchScale(Vector3.one * punchScale, punchDuration, 6, 0.7f)
-            .OnComplete(() => pendingAction?.Invoke());
+        rect.DOPunchScale(Vector3.one * punchScale, punchDuration, 6, 0.7f);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

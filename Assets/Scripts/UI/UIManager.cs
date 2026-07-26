@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
     public CharacterManager characterManager;
 
+    public GameObject movesUIRoot;
     public TextMeshProUGUI movesText;
     public Image movesFillBar;
 
@@ -27,6 +28,9 @@ public class UIManager : MonoBehaviour
         characterManager.OnCharacterDied += HandleCharacterDied;
         characterManager.OnGameOver += HandleGameOver;
 
+        if (movesUIRoot != null)
+            movesUIRoot.SetActive(false);
+
         RefreshFloorText();
     }
 
@@ -44,6 +48,9 @@ public class UIManager : MonoBehaviour
 
     private void HandleCharacterSpawned(CharacterData data, GridMovement character)
     {
+        if (movesUIRoot != null)
+            movesUIRoot.SetActive(true);
+
         if (currentCharacter != null)
             currentCharacter.OnMovesChanged -= HandleMovesChanged;
 
@@ -130,6 +137,9 @@ public class UIManager : MonoBehaviour
 
     private void HandleGameOver()
     {
+        if (movesUIRoot != null)
+            movesUIRoot.SetActive(false);
+
         if (movesText != null)
             movesText.text = "";
 

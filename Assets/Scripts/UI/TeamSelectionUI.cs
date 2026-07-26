@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class TeamSelectionUI : MonoBehaviour
     public List<CharacterData> availableRoster = new List<CharacterData>();
 
     public GameObject teamSelectionPanelRoot;
+    public PanelTransition teamSelectionPanelTransition;
 
     public Transform availableContainer;
     public GameObject availableItemPrefab;
@@ -19,10 +21,15 @@ public class TeamSelectionUI : MonoBehaviour
     public Button previewLevelButton;
 
     public GameObject selectionContentRoot;
+    public GameObject backgroundOverlay;
 
     public GameObject confirmDialogRoot;
     public Button confirmDialogYesButton;
     public Button confirmDialogNoButton;
+
+    public float levelRevealDuration = 2.5f;
+    public float staggerItemDelay = 0.06f;
+    public float staggerItemDuration = 0.25f;
 
     private List<CharacterData> selectedOrder = new List<CharacterData>();
     private List<Button> availableButtons = new List<Button>();
@@ -43,9 +50,22 @@ public class TeamSelectionUI : MonoBehaviour
         confirmDialogNoButton.onClick.AddListener(OnConfirmDialogNo);
 
         confirmDialogRoot.SetActive(false);
-        teamSelectionPanelRoot.SetActive(true);
+        teamSelectionPanelRoot.SetActive(false);
 
         RefreshUI();
+
+        StartCoroutine(RevealLevelThenShowSelection());
+    }
+
+    private IEnumerator RevealLevelThenShowSelection()
+    {
+        yield return new WaitForSeconds(levelRevealDuration);
+
+        teamSelectionPanelRoot.SetActive(true);
+        teamSelectionPanelTransition.Show(() =>
+        {
+            UIAnimations.FadeChildrenIn(availableContainer, staggerItemDelay, staggerItemDuration);
+        });
     }
 
     private void BuildAvailablePanel()
@@ -67,6 +87,13 @@ public class TeamSelectionUI : MonoBehaviour
             var animator = itemGO.GetComponent<SelectionItemAnimator>();
             if (animator == null)
                 animator = itemGO.AddComponent<SelectionItemAnimator>();
+
+            if (image != null)
+            {
+                Color c = image.color;
+                c.a = 0f;
+                image.color = c;
+            }
 
             Button button = itemGO.GetComponent<Button>();
             int index = i;
@@ -149,6 +176,10 @@ public class TeamSelectionUI : MonoBehaviour
     private void OnPreviewToggle()
     {
         contentVisible = !contentVisible;
+
         selectionContentRoot.SetActive(contentVisible);
+
+        if (backgroundOverlay != null)
+            backgroundOverlay.SetActive(contentVisible);
     }
 }
