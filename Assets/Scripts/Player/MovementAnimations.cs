@@ -52,6 +52,8 @@ public class MovementAnimations : MonoBehaviour
     {
         if (moveParticlePrefab == null) return;
 
+        FMODEvents.Instance.PlayMovementSound();
+
         GameObject fx = Instantiate(moveParticlePrefab, worldPos, Quaternion.identity);
 
         if (particleLifetime > 0f)

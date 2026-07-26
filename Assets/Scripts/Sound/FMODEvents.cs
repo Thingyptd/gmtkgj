@@ -8,10 +8,7 @@ public class FMODEvents : MonoBehaviour
     [Serializable]
     public class PlayerSoundsHolder
     {
-        public EventReference Footsteps;
-        public EventReference Jump;
-        public EventReference Spallucce;
-        public EventReference Atterraggio;
+        public EventReference Movement;
     }
 
     [Serializable]
@@ -20,28 +17,13 @@ public class FMODEvents : MonoBehaviour
         public EventReference ButtonClick;
         public EventReference Hover;
         public EventReference Pause;
-        public EventReference Pelly;
-        public EventReference Map;
     }
 
     [Serializable]
     public class SFXHolder
     {
-        public EventReference Interact;
-        public EventReference PuzzleComplete;
-        public EventReference Ingranaggio;
-        public EventReference IngranaggioTrigger;
-        public EventReference Trampolino;
-        public EventReference Rewind;
-        public EventReference Pellicola;
-        public EventReference Ciak;
-        public EventReference Platform;
-        public EventReference PlatformStop;
-        public EventReference PlatformLoop;
-        public EventReference ScotchPlaced;
-        public EventReference ScotchLanded;
-        public EventReference FramePlaced;
-        public EventReference FrameLanded;
+        public EventReference Smash;
+        public EventReference Laser;
     }
 
     public PlayerSoundsHolder PlayerSounds = new();
@@ -57,5 +39,15 @@ public class FMODEvents : MonoBehaviour
             return;
         }
         Instance = this;
+    }
+
+    public void PlayMovementSound()
+    {
+        RuntimeManager.PlayOneShot(PlayerSounds.Movement);
+    }
+ 
+    public void PlaylaserSound()
+    {
+        RuntimeManager.PlayOneShot(SFX.Laser);
     }
 }

@@ -57,8 +57,8 @@ public class AudioManager : MonoBehaviour
     {
         ambianceEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         ambianceEventInstance.release();
-        musicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        musicInstance.release();
+        //musicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        //musicInstance.release();
     }
 
     private void InitializeMusic(EventReference eventReference)
@@ -77,15 +77,6 @@ public class AudioManager : MonoBehaviour
     {
         musicBus.setVolume(value);
     }
-
-    /*
-       public void GetVolumes()
-       {
-           var sfxVolume = 0f;
-           var musicVolume = 0f;
-           SFXBus.getVolume(out sfxVolume);
-           musicBus.getVolume(out musicVolume);
-       }*/
 
     public float GetSFXVolume()
     {

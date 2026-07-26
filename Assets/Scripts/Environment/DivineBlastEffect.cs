@@ -35,6 +35,7 @@ public class DivineBlastEffect : MonoBehaviour
             anim.gameObject.SetActive(true);
 
         anim.Play(anim.clip.name);
+        FMODEvents.Instance.PlaylaserSound();
 
         if (CameraShake.Instance != null)
             CameraShake.Instance.ShakeBlast();
