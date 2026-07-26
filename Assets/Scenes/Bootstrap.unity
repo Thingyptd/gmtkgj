@@ -448,6 +448,11 @@ MonoBehaviour:
   floorSceneNames:
   - Level1
   - Level2
+  - Level3
+  - Level4
+  - Level5
+  - Level6
+  - Level7
   equippedCharacters:
   - {fileID: 11400000, guid: 83246bc1cf323974585b77c7e693d25c, type: 2}
   - {fileID: 11400000, guid: 60b06e2c460751e4ea3d11f12737b04a, type: 2}

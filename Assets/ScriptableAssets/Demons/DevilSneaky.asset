@@ -17,7 +17,7 @@ MonoBehaviour:
   idleFrame1: {fileID: -879411621, guid: b55cd4e3cc574b24b8cc5022b35ecca2, type: 3}
   idleFrame2: {fileID: 1492239656, guid: b55cd4e3cc574b24b8cc5022b35ecca2, type: 3}
   moveRange: 5
-  selectionIcon: {fileID: 21300000, guid: 11edbf4975b398d4c84145e5654db43d, type: 3}
+  selectionIcon: {fileID: 21300000, guid: af4f717cd20b26940b540133a3c34d29, type: 3}
   canPushBoulders: 0
   canFlyOverPits: 0
   isImmuneToTraps: 1

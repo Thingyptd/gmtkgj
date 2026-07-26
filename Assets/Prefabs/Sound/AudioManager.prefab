@@ -111,8 +111,8 @@ MonoBehaviour:
     Path: event:/Empty
   <music>k__BackingField:
     Guid:
-      Data1: -607179299
-      Data2: 1120271442
-      Data3: 1853381293
-      Data4: 1951568172
-    Path: event:/Empty
+      Data1: 1040408689
+      Data2: 1108492369
+      Data3: -621067617
+      Data4: -108506147
+    Path: event:/MUSIC/Gameplay
