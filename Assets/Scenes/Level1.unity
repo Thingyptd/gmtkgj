@@ -154,7 +154,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -6.495117, y: -138}
+  m_AnchoredPosition: {x: -6.495117, y: -87}
   m_SizeDelta: {x: -207.5159, y: -266.02}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &23772764
@@ -174,7 +174,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 263
     m_Bottom: -8
-  m_ChildAlignment: 0
+  m_ChildAlignment: 1
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 200, y: 200}
@@ -2872,6 +2872,7 @@ GameObject:
   - component: {fileID: 1437146493}
   - component: {fileID: 1437146492}
   - component: {fileID: 1437146491}
+  - component: {fileID: 1437146494}
   m_Layer: 5
   m_Name: ConfirmButton
   m_TagString: Untagged
@@ -2980,6 +2981,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1437146489}
   m_CullTransparentMesh: 1
+--- !u!114 &1437146494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437146489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f159b8abec56f740998e988e5c84a2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonAnimator
+  hoverScale: 1.05
+  hoverDuration: 0.15
+  wiggleAngle: 8
+  wiggleDuration: 0.3
+  wiggleVibrato: 3
+  disabledWiggleAngle: 6
+  disabledWiggleDuration: 0.25
 --- !u!1 &1438334790
 GameObject:
   m_ObjectHideFlags: 0

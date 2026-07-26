@@ -7,49 +7,37 @@ using UnityEngine.Tilemaps;
 
 public class GridMovement : MonoBehaviour
 {
-    [Header("Grid & Tilemaps")]
     public Grid grid;
     public Tilemap collisionTilemap;
     public Tilemap pitsTilemap;
 
-    [Header("Movement Settings")]
     public bool instantMove = true;
     public float moveSpeed = 10f;
 
-    [Header("Input")]
     public bool allowHoldRepeat = false;
     public float repeatInterval = 0.15f;
 
-    [Header("Fall Animation")]
     public float fallDuration = 0.4f;
 
-    [Header("Pit Teeter")]
     public float teeterDuration = 0.6f;
     [Range(0f, 1f)] public float teeterLeanRatio = 0.45f;
     public float cancelReturnDuration = 0.15f;
 
     private bool isTeetering = false;
 
-    [Header("Visual")]
     public SpriteRenderer spriteRenderer;
     private MovementAnimations movementAnimations;
 
-    [Header("Runtime Data")]
     public CharacterData data;
     public int movesRemaining;
 
     public event Action<GridMovement> OnMovesExhausted;
-
     public event Action<GridMovement> OnFellIntoPit;
-
     public event Action<Vector3> OnGroundCellEntered;
-
     public event Action<int, int> OnMovesChanged;
-
     public event Action<GridMovement> OnStairsEntered;
 
     private PlayerControls controls;
-
     private List<Vector2Int> heldDirections = new List<Vector2Int>();
 
     private bool isMoving = false;
@@ -117,11 +105,6 @@ public class GridMovement : MonoBehaviour
         if (isTeetering)
             return;
 
-        // Blocchiamo SOLO nuovo input quando il personaggio è morto, non il completamento
-        // dell'animazione di movimento già iniziata: senza questa distinzione, un personaggio
-        // che muore esaurendo l'ultima mossa restava visivamente fermo (con instantMove = false)
-        // perché HandleMovement() non veniva più chiamato, e con esso l'interpolazione verso
-        // targetPosition non arrivava mai a completarsi.
         if (!isDead)
             HandleInputEdges();
 
@@ -215,9 +198,6 @@ public class GridMovement : MonoBehaviour
             else
                 boulder.MoveToCell(beyondCell);
 
-            if (CameraShake.Instance != null)
-                CameraShake.Instance.ShakeBoulderPush();
-
             movesRemaining--;
             OnMovesChanged?.Invoke(movesRemaining, data.moveRange);
 
@@ -259,6 +239,12 @@ public class GridMovement : MonoBehaviour
 
         if (!isPit)
             OnGroundCellEntered?.Invoke(destination);
+
+        LevelButton levelButton = FindButtonAt(nextCell);
+        if (levelButton != null)
+        {
+            levelButton.Press();
+        }
 
         DeathTrap trap = FindTrapAt(nextCell);
         if (trap != null && (data == null || !data.isImmuneToTraps))
@@ -418,6 +404,13 @@ public class GridMovement : MonoBehaviour
         return hit != null ? hit.GetComponent<Stairs>() : null;
     }
 
+    private LevelButton FindButtonAt(Vector3Int cell)
+    {
+        Vector3 worldPos = grid.GetCellCenterWorld(cell);
+        Collider2D hit = Physics2D.OverlapPoint(worldPos);
+        return hit != null ? hit.GetComponent<LevelButton>() : null;
+    }
+
     private Vector3 SnapToGridCenter(Vector3 worldPos)
     {
         Vector3Int cell = grid.WorldToCell(worldPos);
@@ -426,18 +419,8 @@ public class GridMovement : MonoBehaviour
         return center;
     }
 
-    /// <summary>
-    /// Posizione ATTUALE (visiva) del personaggio. Può NON coincidere con la destinazione
-    /// se un'animazione di movimento è ancora in corso (instantMove = false).
-    /// </summary>
     public Vector3 GetCurrentWorldPosition() => transform.position;
 
-    /// <summary>
-    /// Posizione di DESTINAZIONE del movimento in corso o già completato.
-    /// Usare questa (non GetCurrentWorldPosition) quando serve sapere "dove sta andando"
-    /// il personaggio in un istante in cui l'animazione potrebbe non essere ancora arrivata
-    /// — es. quando CharacterManager legge la posizione di morte per farvi spawnare il successivo.
-    /// </summary>
     public Vector3 GetTargetWorldPosition() => targetPosition;
 
     public void ApplyFloorTransition(Tilemap newWalls, Tilemap newPits, Vector3 spawnWorldPos)

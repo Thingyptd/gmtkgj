@@ -5,25 +5,26 @@ using UnityEngine.Tilemaps;
 
 public class CharacterManager : MonoBehaviour
 {
-    [Header("Grid & Tilemaps")]
     public Grid grid;
     public Tilemap collisionTilemap;
     public Tilemap pitsTilemap;
 
-    [Header("Setup")]
     public GameObject characterPrefab;
     public Transform spawnPoint;
 
-    [Header("Timing")]
     public float deathDelay = 0.2f;
 
-    [Header("Divine Blast")]
     public GameObject divineBlastPrefab;
 
+    public GameObject deathParticlePrefab;
+    public float deathParticleLifetime = 2f;
+
     public event Action<CharacterData, GridMovement> OnCharacterSpawned;
-    public event Action<CharacterData> OnCharacterDied; 
-    public event Action<CharacterData> OnCharacterFullyDied; 
+    public event Action<CharacterData> OnCharacterDied;
+    public event Action<CharacterData> OnCharacterFullyDied;
     public event Action OnGameOver;
+
+    public GridMovement CurrentCharacter => currentCharacter;
 
     private GridMovement currentCharacter;
     private Vector3 lastPosition;
@@ -34,8 +35,6 @@ public class CharacterManager : MonoBehaviour
     {
         if (grid == null) grid = FindAnyObjectByType<Grid>();
         ScreenTransition.Instance.Open();
-
-        OnGameOver += HandleGameOverReset; 
     }
 
     public void BeginFloor()
@@ -94,9 +93,9 @@ public class CharacterManager : MonoBehaviour
     private void HandleMovesExhausted(GridMovement deadCharacter)
     {
         CharacterData deadData = GameSession.Instance.CurrentCharacterData;
+        Debug.Log($"{deadData.characterName} ha esaurito le mosse.");
 
         lastFacingLeft = deadCharacter.IsFacingLeft;
-
         lastPosition = deadCharacter.GetTargetWorldPosition();
 
         deadCharacter.OnMovesExhausted -= HandleMovesExhausted;
@@ -123,12 +122,16 @@ public class CharacterManager : MonoBehaviour
         {
             blastInstance = Instantiate(divineBlastPrefab, blastPosition, Quaternion.identity);
 
-            DivineBlastEffect blast = blastInstance.GetComponentInChildren<DivineBlastEffect>();
+            DivineBlastEffect blast = blastInstance.GetComponent<DivineBlastEffect>();
 
             if (blast != null)
             {
                 blast.Play();
                 blastDuration = blast.AnimationDuration;
+            }
+            else
+            {
+                Debug.LogError($"Il prefab '{divineBlastPrefab.name}' non ha il componente DivineBlastEffect sul GameObject radice.");
             }
         }
 
@@ -137,7 +140,19 @@ public class CharacterManager : MonoBehaviour
             yield return new WaitForSeconds(halfDuration);
 
         if (deadCharacter != null)
-            Destroy(deadCharacter.gameObject); 
+        {
+            if (deathParticlePrefab != null)
+            {
+                GameObject particleInstance = Instantiate(deathParticlePrefab, blastPosition, Quaternion.identity);
+
+                if (deathParticleLifetime > 0f)
+                    Destroy(particleInstance, deathParticleLifetime);
+            }
+
+            Destroy(deadCharacter.gameObject);
+        }
+
+        currentCharacter = null;
 
         float remainingDuration = blastDuration - halfDuration;
         if (remainingDuration > 0f)
@@ -152,16 +167,9 @@ public class CharacterManager : MonoBehaviour
         SpawnCurrentCharacter();
     }
 
-    private void HandleGameOverReset()
-    {
-        ScreenTransition.Instance.Close(() =>
-        {
-            GameSession.Instance.ResetCurrentFloor();
-        });
-    }
-
     private void GameOver()
     {
+        Debug.Log("GAME OVER: tutti i personaggi equipaggiati sono stati esauriti.");
         OnGameOver?.Invoke();
     }
 }
