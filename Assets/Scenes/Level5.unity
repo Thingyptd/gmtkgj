@@ -778,7 +778,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 364645064}
   idleSprite: {fileID: -1632461259, guid: c7efdc8a9be869943abe1d64639a24db, type: 3}
   pressedSprite: {fileID: -59892119, guid: c7efdc8a9be869943abe1d64639a24db, type: 3}
-  stairsToReveal: {fileID: 1507663442}
+  stairsToRevealIfStandalone: {fileID: 0}
 --- !u!61 &364645063
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3089,6 +3089,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 972907eddf3a5d542a1af626a6822475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonPuzzleManager
+  buttons: []
+  stairsToReveal: {fileID: 0}
 --- !u!114 &809564445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3434,7 +3436,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1093121057}
   idleSprite: {fileID: -1632461259, guid: c7efdc8a9be869943abe1d64639a24db, type: 3}
   pressedSprite: {fileID: -59892119, guid: c7efdc8a9be869943abe1d64639a24db, type: 3}
-  stairsToReveal: {fileID: 1507663442}
+  stairsToRevealIfStandalone: {fileID: 0}
 --- !u!61 &1093121056
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3759,10 +3761,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TeamSelectionUI
   characterManager: {fileID: 686816370}
   availableRoster:
-  - {fileID: 11400000, guid: 463c2ffaa86ee7e41b63a1f09f5de1cd, type: 2}
+  - {fileID: 11400000, guid: 60b06e2c460751e4ea3d11f12737b04a, type: 2}
   - {fileID: 11400000, guid: 350a4d99adf9d1b47959d7ef475a9279, type: 2}
-  - {fileID: 11400000, guid: 83246bc1cf323974585b77c7e693d25c, type: 2}
-  - {fileID: 11400000, guid: 83246bc1cf323974585b77c7e693d25c, type: 2}
+  - {fileID: 11400000, guid: d3f55204ef60385449b354abb7990fef, type: 2}
+  - {fileID: 11400000, guid: d3f55204ef60385449b354abb7990fef, type: 2}
+  - {fileID: 11400000, guid: 463c2ffaa86ee7e41b63a1f09f5de1cd, type: 2}
   teamSelectionPanelRoot: {fileID: 661074971}
   teamSelectionPanelTransition: {fileID: 661074975}
   availableContainer: {fileID: 23772763}

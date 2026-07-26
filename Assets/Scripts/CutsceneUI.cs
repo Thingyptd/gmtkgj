@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -22,6 +23,7 @@ public class CutsceneUI : MonoBehaviour
 
     private int slideIndex = 0;
     private bool isTransitioning = false;
+    private bool hasEnded = false;
 
     void Start()
     {
@@ -36,6 +38,16 @@ public class CutsceneUI : MonoBehaviour
         ShowSlide(slideIndex);
     }
 
+    void Update()
+    {
+        if (hasEnded) return;
+
+        if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            OnSkipClicked();
+        }
+    }
+
     private void ShowSlide(int index)
     {
         slideImage.sprite = slides[index];
@@ -47,7 +59,7 @@ public class CutsceneUI : MonoBehaviour
 
     private void OnNextClicked()
     {
-        if (isTransitioning) return;
+        if (isTransitioning || hasEnded) return;
 
         StartCoroutine(AdvanceSlide());
     }
@@ -75,12 +87,17 @@ public class CutsceneUI : MonoBehaviour
 
     private void OnSkipClicked()
     {
+        if (hasEnded) return;
+
         StopAllCoroutines();
         EndCutscene();
     }
 
     private void EndCutscene()
     {
+        if (hasEnded) return;
+        hasEnded = true;
+
         gameObject.SetActive(false);
         OnCutsceneComplete?.Invoke();
 
