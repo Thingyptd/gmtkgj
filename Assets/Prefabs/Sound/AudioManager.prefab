@@ -104,6 +104,13 @@ MonoBehaviour:
         Data3: 1919887529
         Data4: 421332867
       Path: event:/SFX/Falling
+    Button:
+      Guid:
+        Data1: -1330342157
+        Data2: 1255865377
+        Data3: -1523250765
+        Data4: -154144775
+      Path: event:/SFX/Bottone
 --- !u!114 &1534308960359059641
 MonoBehaviour:
   m_ObjectHideFlags: 0
