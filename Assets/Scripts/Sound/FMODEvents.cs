@@ -25,6 +25,7 @@ public class FMODEvents : MonoBehaviour
     {
         public EventReference Smash;
         public EventReference Laser;
+        public EventReference Fall;
     }
 
     public PlayerSoundsHolder PlayerSounds = new();
@@ -65,5 +66,10 @@ public class FMODEvents : MonoBehaviour
     public void PlayStartSound()
     {
         RuntimeManager.PlayOneShot(UISounds.Start);
+    }
+
+    public void PlayFallSound()
+    {
+        RuntimeManager.PlayOneShot(SFX.Fall);
     }
 }
