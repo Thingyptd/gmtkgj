@@ -123,7 +123,7 @@ MonoBehaviour:
   Path: Assets/FMODBank/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639206868324044817
+  lastModified: 639206880222555759
   FileSizes: []
   Exists: 1
 --- !u!114 &-785966946541924993
@@ -177,13 +177,14 @@ MonoBehaviour:
   - {fileID: 8965241493652812391}
   - {fileID: -785966946541924993}
   - {fileID: 2708353302556492193}
+  - {fileID: 2294190697807851950}
   EditorParameters: []
   MasterBanks:
   - {fileID: -818008076646442529}
   StringsBanks:
   - {fileID: 2661598597809310707}
   cacheVersion: 131860
-  cacheTime: 639206868324069932
+  cacheTime: 639206880222572267
   SerializableEventsDict:
   - key: event:/Empty
     index: 0
@@ -201,6 +202,35 @@ MonoBehaviour:
     index: 6
   - key: event:/UI/Hover
     index: 7
+  - key: event:/SFX/Falling
+    index: 8
+--- !u!114 &2294190697807851950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Falling
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/SFX/Falling
+  Guid:
+    Data1: -1757563355
+    Data2: 1135798606
+    Data3: 1919887529
+    Data4: 421332867
+  Banks:
+  - {fileID: -818008076646442529}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1605
 --- !u!114 &2661598597809310707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,10 +246,10 @@ MonoBehaviour:
   Path: Assets/FMODBank/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639206868324069932
+  lastModified: 639206880222572267
   FileSizes:
   - Name: 
-    Value: 1170
+    Value: 1208
   Exists: 1
 --- !u!114 &2708353302556492193
 MonoBehaviour:

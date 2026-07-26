@@ -231,6 +231,7 @@ GameObject:
   - component: {fileID: 60852262}
   - component: {fileID: 60852261}
   - component: {fileID: 60852260}
+  - component: {fileID: 60852263}
   m_Layer: 5
   m_Name: ConfirmDialogYesButton
   m_TagString: Untagged
@@ -255,8 +256,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1000.0001, y: -537}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -950, y: -541.74884}
+  m_SizeDelta: {x: 160, y: 54.5023}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &60852260
 MonoBehaviour:
@@ -322,8 +323,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -8191739510646017925, guid: 3c26168079d810041843a99103245fae, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -340,6 +341,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 60852258}
   m_CullTransparentMesh: 1
+--- !u!114 &60852263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60852258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f159b8abec56f740998e988e5c84a2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonAnimator
+  hoverScale: 1.05
+  hoverDuration: 0.15
+  wiggleAngle: 8
+  wiggleDuration: 0.3
+  wiggleVibrato: 3
+  disabledWiggleAngle: 6
+  disabledWiggleDuration: 0.25
 --- !u!1 &96626913
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,7 +645,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 364645064}
   idleSprite: {fileID: -1632461259, guid: c7efdc8a9be869943abe1d64639a24db, type: 3}
   pressedSprite: {fileID: -59892119, guid: c7efdc8a9be869943abe1d64639a24db, type: 3}
-  stairsToReveal: {fileID: 1507663442}
+  stairsToRevealIfStandalone: {fileID: 0}
 --- !u!61 &364645063
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2997,6 +3017,7 @@ GameObject:
   - component: {fileID: 632464618}
   - component: {fileID: 632464617}
   - component: {fileID: 632464616}
+  - component: {fileID: 632464619}
   m_Layer: 5
   m_Name: ConfirmDialogNoButton
   m_TagString: Untagged
@@ -3021,8 +3042,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1000.0001, y: -647}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -950, y: -663}
+  m_SizeDelta: {x: 160, y: 54.5022}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &632464616
 MonoBehaviour:
@@ -3088,8 +3109,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -8191739510646017925, guid: 3c26168079d810041843a99103245fae, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3106,6 +3127,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 632464614}
   m_CullTransparentMesh: 1
+--- !u!114 &632464619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632464614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f159b8abec56f740998e988e5c84a2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonAnimator
+  hoverScale: 1.05
+  hoverDuration: 0.15
+  wiggleAngle: 8
+  wiggleDuration: 0.3
+  wiggleVibrato: 3
+  disabledWiggleAngle: 6
+  disabledWiggleDuration: 0.25
 --- !u!1 &661074971
 GameObject:
   m_ObjectHideFlags: 0
@@ -4449,15 +4489,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: No
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 660acf75025e1514ca862040e8364ca2, type: 2}
+  m_sharedMaterial: {fileID: -8669400101712268029, guid: 660acf75025e1514ca862040e8364ca2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5162,7 +5202,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 152}
+  m_AnchoredPosition: {x: 0, y: 124}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1737461914
@@ -5185,10 +5225,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: is this ok
+  m_text: Is this ok?
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 59e09bbd86baf78428259bdf13d8b006, type: 2}
+  m_sharedMaterial: {fileID: -8669400101712268029, guid: 59e09bbd86baf78428259bdf13d8b006, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5212,14 +5252,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 82.6
+  m_fontSizeBase: 82.6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -5251,7 +5291,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -116.94098, y: 0, z: -141.30351, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5322,17 +5362,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ye
+  m_text: Yes
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 660acf75025e1514ca862040e8364ca2, type: 2}
+  m_sharedMaterial: {fileID: -8669400101712268029, guid: 660acf75025e1514ca862040e8364ca2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
