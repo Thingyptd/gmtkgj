@@ -1423,6 +1423,123 @@ MonoBehaviour:
   wiggleVibrato: 3
   disabledWiggleAngle: 6
   disabledWiggleDuration: 0.25
+--- !u!1001 &611701060
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 260310502098828815, guid: e2bf88cd75743344d8902b077128e6c7, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879209324110126776, guid: e2bf88cd75743344d8902b077128e6c7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -77.39182
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879209324110126776, guid: e2bf88cd75743344d8902b077128e6c7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 393.35883
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879209324110126776, guid: e2bf88cd75743344d8902b077128e6c7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879209324110126776, guid: e2bf88cd75743344d8902b077128e6c7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879209324110126776, guid: e2bf88cd75743344d8902b077128e6c7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879209324110126776, guid: e2bf88cd75743344d8902b077128e6c7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879209324110126776, guid: e2bf88cd75743344d8902b077128e6c7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879209324110126776, guid: e2bf88cd75743344d8902b077128e6c7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879209324110126776, guid: e2bf88cd75743344d8902b077128e6c7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879209324110126776, guid: e2bf88cd75743344d8902b077128e6c7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596557171892846589, guid: e2bf88cd75743344d8902b077128e6c7, type: 3}
+      propertyPath: UISounds.Hover.Path
+      value: event:/UI/Hover
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596557171892846589, guid: e2bf88cd75743344d8902b077128e6c7, type: 3}
+      propertyPath: UISounds.Start.Path
+      value: event:/UI/Start
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596557171892846589, guid: e2bf88cd75743344d8902b077128e6c7, type: 3}
+      propertyPath: UISounds.Select.Path
+      value: event:/UI/Select
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596557171892846589, guid: e2bf88cd75743344d8902b077128e6c7, type: 3}
+      propertyPath: UISounds.Hover.Guid.Data1
+      value: 907870704
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596557171892846589, guid: e2bf88cd75743344d8902b077128e6c7, type: 3}
+      propertyPath: UISounds.Hover.Guid.Data2
+      value: 1164121856
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596557171892846589, guid: e2bf88cd75743344d8902b077128e6c7, type: 3}
+      propertyPath: UISounds.Hover.Guid.Data3
+      value: -297544829
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596557171892846589, guid: e2bf88cd75743344d8902b077128e6c7, type: 3}
+      propertyPath: UISounds.Hover.Guid.Data4
+      value: -253179847
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596557171892846589, guid: e2bf88cd75743344d8902b077128e6c7, type: 3}
+      propertyPath: UISounds.Start.Guid.Data1
+      value: 1294967355
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596557171892846589, guid: e2bf88cd75743344d8902b077128e6c7, type: 3}
+      propertyPath: UISounds.Start.Guid.Data2
+      value: 1197296314
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596557171892846589, guid: e2bf88cd75743344d8902b077128e6c7, type: 3}
+      propertyPath: UISounds.Start.Guid.Data3
+      value: -376041330
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596557171892846589, guid: e2bf88cd75743344d8902b077128e6c7, type: 3}
+      propertyPath: UISounds.Start.Guid.Data4
+      value: 435883986
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596557171892846589, guid: e2bf88cd75743344d8902b077128e6c7, type: 3}
+      propertyPath: UISounds.Select.Guid.Data1
+      value: -1278615843
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596557171892846589, guid: e2bf88cd75743344d8902b077128e6c7, type: 3}
+      propertyPath: UISounds.Select.Guid.Data2
+      value: 1310152514
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596557171892846589, guid: e2bf88cd75743344d8902b077128e6c7, type: 3}
+      propertyPath: UISounds.Select.Guid.Data3
+      value: -2021007971
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596557171892846589, guid: e2bf88cd75743344d8902b077128e6c7, type: 3}
+      propertyPath: UISounds.Select.Guid.Data4
+      value: -819147317
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e2bf88cd75743344d8902b077128e6c7, type: 3}
 --- !u!1 &708820085
 GameObject:
   m_ObjectHideFlags: 0
@@ -6244,3 +6361,4 @@ SceneRoots:
   - {fileID: 1507958415}
   - {fileID: 1617915772}
   - {fileID: 1327015690}
+  - {fileID: 611701060}

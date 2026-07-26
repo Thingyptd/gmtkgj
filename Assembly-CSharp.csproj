@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{D6AA4133-5BBD-BC31-CE91-5F3093962129}</ProjectGuid>
+    <ProjectGuid>{B51C1D0D-B5F8-49D4-BDD6-BB0B5832DCEA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scripts\Game\ScreenTransition.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\CharacterData.cs" />
     <Compile Include="Assets\InputActions\PlayerControls.cs" />
+    <Compile Include="Assets\Scripts\Sound\MusicManager.cs" />
     <Compile Include="Assets\Scripts\Environment\Boulder.cs" />
     <Compile Include="Assets\Scripts\Player\GridMovement.cs" />
     <Compile Include="Assets\Scripts\UI\EyeIndicatorUI.cs" />
@@ -1470,27 +1471,27 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{40DF5262-2FEE-7F6A-6E5F-336FDA9C13CF}</Project>
+      <Project>{4A50CBD5-92A3-5D6D-55FF-A3264775D05E}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
     </ProjectReference>
     <ProjectReference Include="FMODUnityEditor.csproj">
-      <Project>{35C6071A-31E2-1D05-0A48-0B38F12EC63B}</Project>
+      <Project>{3A673309-9BD8-703F-9C31-8E44F207D46F}</Project>
       <Name>FMODUnityEditor</Name>
     </ProjectReference>
     <ProjectReference Include="FMODUnityHaptics.csproj">
-      <Project>{3B102093-E957-29ED-B5ED-3D84B1295B2C}</Project>
+      <Project>{8D3B915A-4C67-DCB3-1E03-31806F4D8DCE}</Project>
       <Name>FMODUnityHaptics</Name>
     </ProjectReference>
     <ProjectReference Include="FMODUnityResonance.csproj">
-      <Project>{5DDAC772-8EB3-1F4F-1838-4E54868B9164}</Project>
+      <Project>{15C8B6F0-90D9-DCD7-388A-A8A77047FE5A}</Project>
       <Name>FMODUnityResonance</Name>
     </ProjectReference>
     <ProjectReference Include="FMODUnity.csproj">
-      <Project>{059FF69C-591B-D996-E9DB-488A13AED966}</Project>
+      <Project>{B0311ACA-81B4-C09F-D5E1-B07A6806D21B}</Project>
       <Name>FMODUnity</Name>
     </ProjectReference>
     <ProjectReference Include="FMODUnityResonanceEditor.csproj">
-      <Project>{4D4668AB-96AD-D198-D709-8F1C63DCFA9A}</Project>
+      <Project>{2A78BF78-B395-5C7F-7FB6-F34A85800AAF}</Project>
       <Name>FMODUnityResonanceEditor</Name>
     </ProjectReference>
   </ItemGroup>

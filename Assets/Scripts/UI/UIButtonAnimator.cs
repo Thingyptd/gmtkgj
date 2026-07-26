@@ -42,6 +42,7 @@ public class UIButtonAnimator : MonoBehaviour, IPointerEnterHandler, IPointerExi
     private void HandleValidClick()
     {
         PlayWiggle(wiggleAngle, wiggleDuration, () => pendingAction?.Invoke());
+        FMODEvents.Instance.PlaySelectSound();
     }
 
     private void PlayWiggle(float angle, float duration, Action onComplete = null)
@@ -68,6 +69,7 @@ public class UIButtonAnimator : MonoBehaviour, IPointerEnterHandler, IPointerExi
         if (!button.interactable) return;
         rect.DOKill();
         rect.DOScale(baseScale * hoverScale, hoverDuration).SetEase(Ease.OutQuad);
+        FMODEvents.Instance.PlayHoverSound();
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -81,6 +83,7 @@ public class UIButtonAnimator : MonoBehaviour, IPointerEnterHandler, IPointerExi
         if (!button.interactable)
         {
             PlayWiggle(disabledWiggleAngle, disabledWiggleDuration);
+            FMODEvents.Instance.PlaySelectSound();
         }
     }
 }
