@@ -46,6 +46,7 @@ public class LevelButton : MonoBehaviour
     {
         if (isPressed) return;
         isPressed = true;
+        FMODEvents.Instance.ButtonSound();
 
         if (spriteRenderer != null && pressedSprite != null)
             spriteRenderer.sprite = pressedSprite;

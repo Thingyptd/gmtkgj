@@ -26,6 +26,7 @@ public class FMODEvents : MonoBehaviour
         public EventReference Boulder;
         public EventReference Laser;
         public EventReference Fall;
+        public EventReference Button;
     }
 
     public PlayerSoundsHolder PlayerSounds = new();
@@ -76,5 +77,10 @@ public class FMODEvents : MonoBehaviour
     public void PlayBoulderSound()
     {
         RuntimeManager.PlayOneShot(SFX.Boulder);
+    }
+
+    public void ButtonSound()
+    {
+        RuntimeManager.PlayOneShot(SFX.Button);
     }
 }

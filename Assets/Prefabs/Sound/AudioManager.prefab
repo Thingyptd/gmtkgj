@@ -70,11 +70,11 @@ MonoBehaviour:
       Path: event:/UI/Hover
     Pause:
       Guid:
-        Data1: 0
-        Data2: 0
-        Data3: 0
-        Data4: 0
-      Path: 
+        Data1: -2031357851
+        Data2: 1205898680
+        Data3: 2016771499
+        Data4: -1729017583
+      Path: snapshot:/PauseSnapshot
     Start:
       Guid:
         Data1: 1294967355
@@ -116,14 +116,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cec2fd6e3d3a31b498130f92dd424e75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
-  <ambience>k__BackingField:
+  menuSceneName: MainMenu
+  menuMusic:
     Guid:
-      Data1: -607179299
-      Data2: 1120271442
-      Data3: 1853381293
-      Data4: 1951568172
-    Path: event:/Empty
-  <music>k__BackingField:
+      Data1: -232000849
+      Data2: 1187047503
+      Data3: -2086727793
+      Data4: -1990054344
+    Path: event:/MUSIC/Menu
+  gameplayMusic:
     Guid:
       Data1: 1040408689
       Data2: 1108492369
