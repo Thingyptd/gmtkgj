@@ -9,7 +9,7 @@ public class LevelButton : MonoBehaviour
     public Sprite idleSprite;
     public Sprite pressedSprite;
 
-    [Tooltip("Usato SOLO se questo bottone non è registrato su un ButtonPuzzleManager: in tal caso si autogestisce e rivela queste scale da solo.")]
+    [Tooltip("Usato SOLO se questo bottone non è registrato su un ButtonPuzzleManager: in tal caso si autogestisce e sblocca queste scale da solo.")]
     public GameObject stairsToRevealIfStandalone;
 
     private ButtonPuzzleManager manager;
@@ -35,10 +35,6 @@ public class LevelButton : MonoBehaviour
 
         if (spriteRenderer != null && idleSprite != null)
             spriteRenderer.sprite = idleSprite;
-
-        // Se nessun manager lo registrerà (bottone standalone), gestisce da solo le proprie scale
-        if (manager == null && stairsToRevealIfStandalone != null)
-            stairsToRevealIfStandalone.SetActive(false);
     }
 
     public void SetManager(ButtonPuzzleManager puzzleManager)
@@ -61,6 +57,10 @@ public class LevelButton : MonoBehaviour
         else if (stairsToRevealIfStandalone != null)
         {
             stairsToRevealIfStandalone.SetActive(true);
+
+            Stairs stairsComponent = stairsToRevealIfStandalone.GetComponent<Stairs>();
+            if (stairsComponent != null)
+                stairsComponent.Unlock();
         }
     }
 }

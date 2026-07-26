@@ -123,7 +123,7 @@ MonoBehaviour:
   Path: Assets/FMODBank/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639206880222555759
+  lastModified: 639206886962315885
   FileSizes: []
   Exists: 1
 --- !u!114 &-785966946541924993
@@ -178,13 +178,14 @@ MonoBehaviour:
   - {fileID: -785966946541924993}
   - {fileID: 2708353302556492193}
   - {fileID: 2294190697807851950}
+  - {fileID: 4016805567602776145}
   EditorParameters: []
   MasterBanks:
   - {fileID: -818008076646442529}
   StringsBanks:
   - {fileID: 2661598597809310707}
   cacheVersion: 131860
-  cacheTime: 639206880222572267
+  cacheTime: 639206886962330021
   SerializableEventsDict:
   - key: event:/Empty
     index: 0
@@ -204,6 +205,8 @@ MonoBehaviour:
     index: 7
   - key: event:/SFX/Falling
     index: 8
+  - key: event:/SFX/Boulder
+    index: 9
 --- !u!114 &2294190697807851950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,10 +249,10 @@ MonoBehaviour:
   Path: Assets/FMODBank/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639206880222572267
+  lastModified: 639206886962330021
   FileSizes:
   - Name: 
-    Value: 1208
+    Value: 1246
   Exists: 1
 --- !u!114 &2708353302556492193
 MonoBehaviour:
@@ -278,6 +281,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 280
+--- !u!114 &4016805567602776145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Boulder
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/SFX/Boulder
+  Guid:
+    Data1: 1568506444
+    Data2: 1270384652
+    Data3: -612849766
+    Data4: -1352169520
+  Banks:
+  - {fileID: -818008076646442529}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 399
 --- !u!114 &4610281721646541018
 MonoBehaviour:
   m_ObjectHideFlags: 0

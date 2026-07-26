@@ -27,6 +27,10 @@ public class ButtonPuzzleManager : MonoBehaviour
         if (pressedCount >= buttons.Count && stairsToReveal != null)
         {
             stairsToReveal.SetActive(true);
+
+            Stairs stairsComponent = stairsToReveal.GetComponent<Stairs>();
+            if (stairsComponent != null)
+                stairsComponent.Unlock();
         }
     }
 }
