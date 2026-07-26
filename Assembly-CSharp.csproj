@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\UI\LogoIdleFloat.cs" />
     <Compile Include="Assets\Scripts\Player\MovementAnimations.cs" />
     <Compile Include="Assets\Scripts\Sound\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\UI\SelectionItemAnimator.cs" />
     <Compile Include="Assets\Scripts\Other\CameraShake.cs" />
     <Compile Include="Assets\Scripts\Game\ScreenTransition.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\CharacterData.cs" />

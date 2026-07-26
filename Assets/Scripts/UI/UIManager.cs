@@ -5,21 +5,18 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    [Header("References")]
     public CharacterManager characterManager;
 
-    [Header("Moves Counter")]
     public TextMeshProUGUI movesText;
+    public Image movesFillBar;
 
-    [Header("Floor Display")]
     public TextMeshProUGUI floorText;
 
-    [Header("Queue Display")]
     public GameObject queueIconPrefab;
-    public Transform queueContainer; 
+    public Transform queueContainer;
 
     private GridMovement currentCharacter;
-    private List<GameObject> queueIcons = new List<GameObject>();
+    private List<Image> queueIconImages = new List<Image>();
 
     void OnEnable()
     {
@@ -53,9 +50,12 @@ public class UIManager : MonoBehaviour
         currentCharacter = character;
         currentCharacter.OnMovesChanged += HandleMovesChanged;
 
-        HandleMovesChanged(character.movesRemaining, character.data.moveRange);
+        HandleMovesChanged(character.movesRemaining, data.moveRange);
 
-        RefreshQueue();
+        if (queueIconImages.Count == 0)
+            BuildQueueOnce();
+
+        RefreshDeadStates();
     }
 
     private void HandleCharacterDied(CharacterData data)
@@ -65,48 +65,57 @@ public class UIManager : MonoBehaviour
             currentCharacter.OnMovesChanged -= HandleMovesChanged;
             currentCharacter = null;
         }
+
+        RefreshDeadStates();
     }
 
     private void HandleMovesChanged(int remaining, int max)
     {
         if (movesText != null)
             movesText.text = remaining.ToString();
+
+        if (movesFillBar != null)
+            movesFillBar.fillAmount = max > 0 ? (float)remaining / max : 0f;
     }
 
-    private void RefreshQueue()
+    private void BuildQueueOnce()
     {
-        foreach (var icon in queueIcons)
-            Destroy(icon);
-        queueIcons.Clear();
+        foreach (var icon in queueIconImages)
+            Destroy(icon.gameObject);
+        queueIconImages.Clear();
 
         if (queueContainer == null || queueIconPrefab == null) return;
 
         var session = GameSession.Instance;
         if (session == null) return;
 
-        for (int i = session.currentCharacterIndex; i < session.equippedCharacters.Count; i++)
+        foreach (CharacterData data in session.equippedCharacters)
         {
-            CharacterData data = session.equippedCharacters[i];
-
             GameObject iconGO = Instantiate(queueIconPrefab, queueContainer);
+
             Image img = iconGO.GetComponent<Image>();
             if (img != null)
-                img.color = data.characterColor;
+            {
+                img.sprite = data.idleFrame1;
+                img.color = Color.white;
+            }
 
-            iconGO.transform.localScale = (i == session.currentCharacterIndex) ? Vector3.one * 1.3f : Vector3.one;
-
-            queueIcons.Add(iconGO);
+            queueIconImages.Add(img);
         }
     }
 
-    private void HandleGameOver()
+    private void RefreshDeadStates()
     {
-        if (movesText != null)
-            movesText.text = "GAME OVER";
+        var session = GameSession.Instance;
+        if (session == null) return;
 
-        foreach (var icon in queueIcons)
-            Destroy(icon);
-        queueIcons.Clear();
+        for (int i = 0; i < queueIconImages.Count; i++)
+        {
+            if (queueIconImages[i] == null) continue;
+
+            bool isDead = i < session.currentCharacterIndex;
+            queueIconImages[i].color = isDead ? Color.gray : Color.white;
+        }
     }
 
     private void RefreshFloorText()
@@ -116,6 +125,16 @@ public class UIManager : MonoBehaviour
         var session = GameSession.Instance;
         if (session == null) return;
 
-        floorText.text = $"F{session.CurrentFloorIndex + 1}";
+        floorText.text = $"Piano {session.CurrentFloorIndex + 1}/{session.TotalFloors}";
+    }
+
+    private void HandleGameOver()
+    {
+        if (movesText != null)
+            movesText.text = "";
+
+        foreach (var icon in queueIconImages)
+            Destroy(icon.gameObject);
+        queueIconImages.Clear();
     }
 }

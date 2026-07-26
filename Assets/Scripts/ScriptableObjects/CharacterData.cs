@@ -13,6 +13,8 @@ public class CharacterData : ScriptableObject
     [Header("Statistiche")]
     public int moveRange = 5;
 
+    public Sprite selectionIcon;
+
     public bool canPushBoulders = false;
 
     public bool canFlyOverPits = false;

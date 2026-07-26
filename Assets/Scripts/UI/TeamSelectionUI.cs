@@ -5,28 +5,21 @@ using UnityEngine.UI;
 
 public class TeamSelectionUI : MonoBehaviour
 {
-    [Header("References")]
     public CharacterManager characterManager;
 
-    [Tooltip("Tutti i personaggi assegnabili su questo piano")]
     public List<CharacterData> availableRoster = new List<CharacterData>();
 
-    [Header("Root del pannello grafico da nascondere a fine selezione")]
     public GameObject teamSelectionPanelRoot;
 
-    [Header("Pannello Disponibili")]
     public Transform availableContainer;
-    public GameObject availableItemPrefab; // figli attesi: NameText, ColorImage, OrderBadge (Button sull'oggetto radice)
+    public GameObject availableItemPrefab;
 
-    [Header("Bottoni principali")]
     public Button undoButton;
     public Button confirmButton;
     public Button previewLevelButton;
 
-    [Header("Contenitore che si nasconde con 'Vedi livello'")]
     public GameObject selectionContentRoot;
 
-    [Header("Popup di conferma")]
     public GameObject confirmDialogRoot;
     public Button confirmDialogYesButton;
     public Button confirmDialogNoButton;
@@ -35,6 +28,7 @@ public class TeamSelectionUI : MonoBehaviour
     private List<Button> availableButtons = new List<Button>();
     private List<Image> availableImages = new List<Image>();
     private List<TextMeshProUGUI> availableBadges = new List<TextMeshProUGUI>();
+    private List<SelectionItemAnimator> availableAnimators = new List<SelectionItemAnimator>();
 
     private bool contentVisible = true;
 
@@ -49,6 +43,8 @@ public class TeamSelectionUI : MonoBehaviour
         confirmDialogNoButton.onClick.AddListener(OnConfirmDialogNo);
 
         confirmDialogRoot.SetActive(false);
+        teamSelectionPanelRoot.SetActive(true);
+
         RefreshUI();
     }
 
@@ -60,28 +56,32 @@ public class TeamSelectionUI : MonoBehaviour
 
             GameObject itemGO = Instantiate(availableItemPrefab, availableContainer);
 
-            var nameText = itemGO.transform.Find("NameText")?.GetComponent<TextMeshProUGUI>();
-            if (nameText != null) nameText.text = data.characterName;
-
-            var colorImage = itemGO.transform.Find("ColorImage")?.GetComponent<Image>();
-            if (colorImage != null) colorImage.color = data.characterColor;
+            Image image = itemGO.GetComponent<Image>();
+            if (image != null)
+                image.sprite = data.selectionIcon;
 
             var badge = itemGO.transform.Find("OrderBadge")?.GetComponent<TextMeshProUGUI>();
-            if (badge != null) badge.gameObject.SetActive(false);
+            if (badge != null)
+                badge.gameObject.SetActive(false);
+
+            var animator = itemGO.GetComponent<SelectionItemAnimator>();
+            if (animator == null)
+                animator = itemGO.AddComponent<SelectionItemAnimator>();
 
             Button button = itemGO.GetComponent<Button>();
-            int index = i; // cattura locale per la closure
-            button.onClick.AddListener(() => OnAvailableClicked(index));
+            int index = i;
+            animator.SetAction(() => OnAvailableClicked(index));
 
             availableButtons.Add(button);
-            availableImages.Add(colorImage);
+            availableImages.Add(image);
             availableBadges.Add(badge);
+            availableAnimators.Add(animator);
         }
     }
 
     private void OnAvailableClicked(int index)
     {
-        if (!availableButtons[index].interactable) return; // già selezionato
+        if (!availableButtons[index].interactable) return;
 
         CharacterData data = availableRoster[index];
         selectedOrder.Add(data);
@@ -106,9 +106,7 @@ public class TeamSelectionUI : MonoBehaviour
     private void SetAvailableItemSelected(int index, bool selected, int orderNumber)
     {
         availableButtons[index].interactable = !selected;
-
-        if (availableImages[index] != null)
-            availableImages[index].color = selected ? Color.gray : availableRoster[index].characterColor;
+        availableAnimators[index].SetLocked(selected);
 
         if (availableBadges[index] != null)
         {

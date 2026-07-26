@@ -154,7 +154,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -6.495117, y: -38.99}
+  m_AnchoredPosition: {x: -6.495117, y: -138}
   m_SizeDelta: {x: -207.5159, y: -266.02}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &23772764
@@ -170,15 +170,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GridLayoutGroup
   m_Padding:
-    m_Left: 37
+    m_Left: 102
     m_Right: 0
-    m_Top: 33
-    m_Bottom: 138
+    m_Top: 263
+    m_Bottom: -8
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 200, y: 200}
-  m_Spacing: {x: 34.4, y: 0}
+  m_Spacing: {x: 127.3, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!114 &23772765
@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2508,6 +2508,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
   characterManager: {fileID: 686816370}
   movesText: {fileID: 549695869}
+  movesFillBar: {fileID: 0}
   floorText: {fileID: 96626915}
   queueIconPrefab: {fileID: 1075121425117188510, guid: dba6ab5287d9960439383e5eb7a3fc3b, type: 3}
   queueContainer: {fileID: 1240124429}
@@ -2546,7 +2547,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 463c2ffaa86ee7e41b63a1f09f5de1cd, type: 2}
   teamSelectionPanelRoot: {fileID: 661074971}
   availableContainer: {fileID: 23772763}
-  availableItemPrefab: {fileID: 6576903591863491995, guid: c36a8b53e1c3fcc4b80d24d23d6f72f5, type: 3}
+  availableItemPrefab: {fileID: 4817523692621346633, guid: c36a8b53e1c3fcc4b80d24d23d6f72f5, type: 3}
   undoButton: {fileID: 469507312}
   confirmButton: {fileID: 1437146491}
   previewLevelButton: {fileID: 517008722}
