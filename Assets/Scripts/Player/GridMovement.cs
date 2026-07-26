@@ -102,6 +102,12 @@ public class GridMovement : MonoBehaviour
 
     void Update()
     {
+        if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            if (PauseMenuUI.Instance != null)
+                PauseMenuUI.Instance.TogglePause();
+        }
+
         if (isTeetering)
             return;
 
@@ -246,10 +252,6 @@ public class GridMovement : MonoBehaviour
             levelButton.Press();
         }
 
-        // Le scale hanno priorità sulla morte, MA solo se effettivamente sbloccate.
-        // IsUnlocked è l'unica fonte di verità: non dipende da come il GameObject
-        // delle scale è impostato in scena (attivo/disattivo), quindi funziona anche
-        // se quella parte non è stata configurata correttamente a mano.
         Stairs stairs = FindStairsAt(nextCell);
         if (stairs != null && stairs.IsUnlocked)
         {

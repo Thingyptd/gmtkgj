@@ -35,6 +35,23 @@ public class CharacterManager : MonoBehaviour
     {
         if (grid == null) grid = FindAnyObjectByType<Grid>();
         ScreenTransition.Instance.Open();
+
+        OnGameOver += HandleGameOverReset;
+    }
+
+    private void HandleGameOverReset()
+    {
+        if (ScreenTransition.Instance != null)
+        {
+            ScreenTransition.Instance.Close(() =>
+            {
+                GameSession.Instance.ResetCurrentFloor();
+            });
+        }
+        else
+        {
+            GameSession.Instance.ResetCurrentFloor();
+        }
     }
 
     public void BeginFloor()
