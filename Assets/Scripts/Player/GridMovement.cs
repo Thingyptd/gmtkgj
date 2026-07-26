@@ -246,6 +246,13 @@ public class GridMovement : MonoBehaviour
             levelButton.Press();
         }
 
+        Stairs stairs = FindStairsAt(nextCell);
+        if (stairs != null)
+        {
+            OnStairsEntered?.Invoke(this);
+            return;
+        }
+
         DeathTrap trap = FindTrapAt(nextCell);
         if (trap != null && (data == null || !data.isImmuneToTraps))
         {
@@ -259,13 +266,6 @@ public class GridMovement : MonoBehaviour
         {
             isDead = true;
             OnMovesExhausted?.Invoke(this);
-            return;
-        }
-
-        Stairs stairs = FindStairsAt(nextCell);
-        if (stairs != null)
-        {
-            OnStairsEntered?.Invoke(this);
         }
     }
 

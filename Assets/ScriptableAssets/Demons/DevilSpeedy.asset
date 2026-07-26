@@ -16,7 +16,7 @@ MonoBehaviour:
   characterColor: {r: 1, g: 1, b: 1, a: 1}
   idleFrame1: {fileID: -1977843936, guid: b55cd4e3cc574b24b8cc5022b35ecca2, type: 3}
   idleFrame2: {fileID: 86411744, guid: b55cd4e3cc574b24b8cc5022b35ecca2, type: 3}
-  moveRange: 15
+  moveRange: 9
   selectionIcon: {fileID: 21300000, guid: 5420cc48e0847fc4ba8188e69d948525, type: 3}
   canPushBoulders: 0
   canFlyOverPits: 0

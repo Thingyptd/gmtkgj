@@ -164,6 +164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 167045fd32ec4304dad44a3e9f3df248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovementAnimations
-  moveParticlePrefab: {fileID: 8943962563562556758, guid: 5ffbd8d9096d670459bde9aec75c3157, type: 3}
-  particleLifetime: 1
+  moveParticlePrefab: {fileID: 2187992639696423790, guid: f6b9d248379ebc04ca3a9d778f078759, type: 3}
+  particleLifetime: 0.3
   idleFrameDuration: 0.4

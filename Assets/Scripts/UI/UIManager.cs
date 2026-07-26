@@ -132,7 +132,7 @@ public class UIManager : MonoBehaviour
         var session = GameSession.Instance;
         if (session == null) return;
 
-        floorText.text = $"Piano {session.CurrentFloorIndex + 1}/{session.TotalFloors}";
+        floorText.text = $"F{session.CurrentFloorIndex + 1}";
     }
 
     private void HandleGameOver()
