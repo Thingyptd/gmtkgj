@@ -41,7 +41,10 @@ public class TeamSelectionUI : MonoBehaviour
 
     void Start()
     {
-        BuildAvailablePanel();
+        bool skipSelection = ShouldSkipSelection();
+
+        if (!skipSelection)
+            BuildAvailablePanel();
 
         undoButton.onClick.AddListener(OnUndoClicked);
         confirmButton.onClick.AddListener(OnConfirmClicked);
@@ -54,18 +57,48 @@ public class TeamSelectionUI : MonoBehaviour
 
         RefreshUI();
 
-        StartCoroutine(RevealLevelThenShowSelection());
+        StartCoroutine(RevealLevelThenShowSelection(skipSelection));
     }
 
-    private IEnumerator RevealLevelThenShowSelection()
+    private bool ShouldSkipSelection()
+    {
+        if (availableRoster.Count <= 1)
+            return true;
+
+        CharacterData first = availableRoster[0];
+        for (int i = 1; i < availableRoster.Count; i++)
+        {
+            if (availableRoster[i] != first)
+                return false;
+        }
+
+        return true;
+    }
+
+    private IEnumerator RevealLevelThenShowSelection(bool skipSelection)
     {
         yield return new WaitForSeconds(levelRevealDuration);
+
+        if (skipSelection)
+        {
+            AutoConfirmSelection();
+            yield break;
+        }
 
         teamSelectionPanelRoot.SetActive(true);
         teamSelectionPanelTransition.Show(() =>
         {
             UIAnimations.FadeChildrenIn(availableContainer, staggerItemDelay, staggerItemDuration);
         });
+    }
+
+    private void AutoConfirmSelection()
+    {
+        GameSession.Instance.equippedCharacters = new List<CharacterData>(availableRoster);
+        GameSession.Instance.currentCharacterIndex = 0;
+        GameSession.Instance.currentCharacterMovesRemaining = -1;
+
+        characterManager.BeginFloor();
     }
 
     private void BuildAvailablePanel()
