@@ -123,7 +123,7 @@ MonoBehaviour:
   Path: Assets/FMODBank/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639206886962315885
+  lastModified: 639206918274234676
   FileSizes: []
   Exists: 1
 --- !u!114 &-785966946541924993
@@ -179,13 +179,15 @@ MonoBehaviour:
   - {fileID: 2708353302556492193}
   - {fileID: 2294190697807851950}
   - {fileID: 4016805567602776145}
+  - {fileID: 8820036497034938238}
+  - {fileID: 9119218538408108964}
   EditorParameters: []
   MasterBanks:
   - {fileID: -818008076646442529}
   StringsBanks:
   - {fileID: 2661598597809310707}
   cacheVersion: 131860
-  cacheTime: 639206886962330021
+  cacheTime: 639206918274254740
   SerializableEventsDict:
   - key: event:/Empty
     index: 0
@@ -207,6 +209,10 @@ MonoBehaviour:
     index: 8
   - key: event:/SFX/Boulder
     index: 9
+  - key: event:/MUSIC/Menu
+    index: 10
+  - key: event:/SFX/Bottone
+    index: 11
 --- !u!114 &2294190697807851950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,10 +255,10 @@ MonoBehaviour:
   Path: Assets/FMODBank/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639206886962330021
+  lastModified: 639206918274254740
   FileSizes:
   - Name: 
-    Value: 1246
+    Value: 1340
   Exists: 1
 --- !u!114 &2708353302556492193
 MonoBehaviour:
@@ -335,6 +341,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &8820036497034938238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MUSIC/Menu
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/MUSIC/Menu
+  Guid:
+    Data1: -232000849
+    Data2: 1187047503
+    Data3: -2086727793
+    Data4: -1990054344
+  Banks:
+  - {fileID: -818008076646442529}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 60631
 --- !u!114 &8965241493652812391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,3 +395,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2172
+--- !u!114 &9119218538408108964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Bottone
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/SFX/Bottone
+  Guid:
+    Data1: -1330342157
+    Data2: 1255865377
+    Data3: -1523250765
+    Data4: -154144775
+  Banks:
+  - {fileID: -818008076646442529}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 479

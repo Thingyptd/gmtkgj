@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\Sound\FMODEvents.cs" />
     <Compile Include="Assets\Scripts\UI\GameSettings.cs" />
     <Compile Include="Assets\Scripts\UI\LogoIdleFloat.cs" />
+    <Compile Include="Assets\Scripts\UI\SpawnPointIndicator.cs" />
     <Compile Include="Assets\Scripts\Player\MovementAnimations.cs" />
     <Compile Include="Assets\Scripts\Sound\AudioManager.cs" />
     <Compile Include="Assets\Scripts\UI\SelectionItemAnimator.cs" />
