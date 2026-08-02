@@ -14,10 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterName: Strong
   characterColor: {r: 1, g: 1, b: 1, a: 1}
+  characterSprite: {fileID: 0}
   idleFrame1: {fileID: -879411621, guid: b55cd4e3cc574b24b8cc5022b35ecca2, type: 3}
   idleFrame2: {fileID: 1492239656, guid: b55cd4e3cc574b24b8cc5022b35ecca2, type: 3}
-  moveRange: 5
   selectionIcon: {fileID: 21300000, guid: af4f717cd20b26940b540133a3c34d29, type: 3}
+  sneakFrame1: {fileID: 1827913508, guid: b55cd4e3cc574b24b8cc5022b35ecca2, type: 3}
+  sneakFrame2: {fileID: -157916310, guid: b55cd4e3cc574b24b8cc5022b35ecca2, type: 3}
+  sneakFrameDuration: 0.08
+  moveRange: 5
   canPushBoulders: 0
   canFlyOverPits: 0
   isImmuneToTraps: 1

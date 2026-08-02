@@ -35,18 +35,31 @@ public class LevelButton : MonoBehaviour
 
         if (spriteRenderer != null && idleSprite != null)
             spriteRenderer.sprite = idleSprite;
+
+        if (manager == null && stairsToRevealIfStandalone == null)
+        {
+            Debug.LogWarning($"[LevelButton:{name}] Nessun manager registrato e 'Stairs To Reveal If Standalone' è vuoto: questo bottone non farà nulla quando premuto.");
+        }
     }
 
     public void SetManager(ButtonPuzzleManager puzzleManager)
     {
         manager = puzzleManager;
+        Debug.Log($"[LevelButton:{name}] Registrato su ButtonPuzzleManager '{puzzleManager.name}'.");
     }
 
     public void Press()
     {
-        if (isPressed) return;
+        if (isPressed)
+        {
+            Debug.Log($"[LevelButton:{name}] Press() ignorato: già premuto in precedenza.");
+            return;
+        }
         isPressed = true;
+
         FMODEvents.Instance.ButtonSound();
+
+        Debug.Log($"[LevelButton:{name}] Press() eseguito. Manager assegnato: {(manager != null)}. Stairs standalone assegnato: {(stairsToRevealIfStandalone != null)}.");
 
         if (spriteRenderer != null && pressedSprite != null)
             spriteRenderer.sprite = pressedSprite;
@@ -61,7 +74,17 @@ public class LevelButton : MonoBehaviour
 
             Stairs stairsComponent = stairsToRevealIfStandalone.GetComponent<Stairs>();
             if (stairsComponent != null)
+            {
                 stairsComponent.Unlock();
+            }
+            else
+            {
+                Debug.LogError($"[LevelButton:{name}] '{stairsToRevealIfStandalone.name}' non ha un componente Stairs!");
+            }
+        }
+        else
+        {
+            Debug.LogError($"[LevelButton:{name}] Press() eseguito ma non c'è NÉ un manager NÉ 'stairsToRevealIfStandalone' assegnato. Vai nell'Inspector di questo bottone e controlla i riferimenti.");
         }
     }
 }

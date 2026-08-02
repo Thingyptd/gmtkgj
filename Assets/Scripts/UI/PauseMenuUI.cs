@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -17,19 +18,42 @@ public class PauseMenuUI : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(transform.root.gameObject);
+            return;
+        }
+
         Instance = this;
+        DontDestroyOnLoad(transform.root.gameObject);
 
-        panelRoot.SetActive(false);
+        if (panelRoot == null)
+        {
+            Debug.LogError($"[PauseMenuUI:{name}] 'Panel Root' non è assegnato!");
+        }
+        else
+        {
+            panelRoot.SetActive(false);
+        }
 
-        resumeButton.onClick.AddListener(OnResumeClicked);
-        restartButton.onClick.AddListener(OnRestartClicked);
-        quitButton.onClick.AddListener(OnQuitClicked);
+        if (resumeButton == null || restartButton == null || quitButton == null)
+        {
+            Debug.LogError($"[PauseMenuUI:{name}] Uno dei bottoni (Resume/Restart/Quit) non è assegnato!");
+        }
+        else
+        {
+            resumeButton.onClick.AddListener(OnResumeClicked);
+            restartButton.onClick.AddListener(OnRestartClicked);
+            quitButton.onClick.AddListener(OnQuitClicked);
+        }
     }
 
-    void OnDestroy()
+    void Update()
     {
-        if (Instance == this)
-            Instance = null;
+        if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            TogglePause();
+        }
     }
 
     public void TogglePause()
@@ -44,14 +68,18 @@ public class PauseMenuUI : MonoBehaviour
     {
         isPaused = true;
         Time.timeScale = 0f;
-        panelRoot.SetActive(true);
+
+        if (panelRoot != null)
+            panelRoot.SetActive(true);
     }
 
     private void Resume()
     {
         isPaused = false;
         Time.timeScale = 1f;
-        panelRoot.SetActive(false);
+
+        if (panelRoot != null)
+            panelRoot.SetActive(false);
     }
 
     private void OnResumeClicked()
@@ -61,7 +89,7 @@ public class PauseMenuUI : MonoBehaviour
 
     private void OnRestartClicked()
     {
-        Time.timeScale = 1f;
+        ClosePauseStateBeforeSceneChange();
 
         if (ScreenTransition.Instance != null)
         {
@@ -75,7 +103,7 @@ public class PauseMenuUI : MonoBehaviour
 
     private void OnQuitClicked()
     {
-        Time.timeScale = 1f;
+        ClosePauseStateBeforeSceneChange();
 
         if (ScreenTransition.Instance != null)
         {
@@ -85,5 +113,19 @@ public class PauseMenuUI : MonoBehaviour
         {
             SceneManager.LoadScene(mainMenuSceneName);
         }
+    }
+
+    /// <summary>
+    /// Dato che questo oggetto è persistente (DontDestroyOnLoad), sopravvive a qualunque
+    /// cambio scena — quindi il pannello e lo stato "in pausa" vanno resettati esplicitamente
+    /// PRIMA di ricaricare qualunque scena, altrimenti restano visibili/attivi anche dopo.
+    /// </summary>
+    private void ClosePauseStateBeforeSceneChange()
+    {
+        isPaused = false;
+        Time.timeScale = 1f;
+
+        if (panelRoot != null)
+            panelRoot.SetActive(false);
     }
 }

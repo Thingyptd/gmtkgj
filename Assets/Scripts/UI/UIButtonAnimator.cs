@@ -14,7 +14,7 @@ public class UIButtonAnimator : MonoBehaviour, IPointerEnterHandler, IPointerExi
     [Header("Click Wiggle (rotazione sinistra/destra)")]
     public float wiggleAngle = 8f;
     public float wiggleDuration = 0.3f;
-    public int wiggleVibrato = 3; 
+    public int wiggleVibrato = 3;
 
     [Header("Disabled Feedback")]
     public float disabledWiggleAngle = 6f;
@@ -41,41 +41,53 @@ public class UIButtonAnimator : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     private void HandleValidClick()
     {
-        PlayWiggle(wiggleAngle, wiggleDuration, () => pendingAction?.Invoke());
+        // L'azione scatta SUBITO, non aspetta la fine del wiggle: così un hover che interrompe
+        // l'animazione a metà (DOKill) non può mai "perdere" il click.
+        pendingAction?.Invoke();
+
+        PlayWiggle(wiggleAngle, wiggleDuration);
+
         FMODEvents.Instance.PlaySelectSound();
     }
 
-    private void PlayWiggle(float angle, float duration, Action onComplete = null)
+    private void PlayWiggle(float angle, float duration)
     {
         rect.DOKill();
         rect.localRotation = Quaternion.identity;
 
         Sequence seq = DOTween.Sequence();
+        seq.SetUpdate(true); // indipendente da Time.timeScale: funziona anche a gioco in pausa
+
         float step = duration / (wiggleVibrato * 2f);
 
         for (int i = 0; i < wiggleVibrato; i++)
         {
-            float currentAngle = angle * (1f - (float)i / wiggleVibrato); 
+            float currentAngle = angle * (1f - (float)i / wiggleVibrato);
             seq.Append(rect.DOLocalRotate(new Vector3(0, 0, -currentAngle), step).SetEase(Ease.InOutSine));
             seq.Append(rect.DOLocalRotate(new Vector3(0, 0, currentAngle), step).SetEase(Ease.InOutSine));
         }
 
         seq.Append(rect.DOLocalRotate(Vector3.zero, step).SetEase(Ease.OutQuad));
-        seq.AppendCallback(() => onComplete?.Invoke());
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (!button.interactable) return;
+
         rect.DOKill();
-        rect.DOScale(baseScale * hoverScale, hoverDuration).SetEase(Ease.OutQuad);
+        rect.DOScale(baseScale * hoverScale, hoverDuration)
+            .SetEase(Ease.OutQuad)
+            .SetUpdate(true);
+
         FMODEvents.Instance.PlayHoverSound();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         rect.DOKill();
-        rect.DOScale(baseScale, hoverDuration).SetEase(Ease.OutQuad);
+        rect.DOScale(baseScale, hoverDuration)
+            .SetEase(Ease.OutQuad)
+            .SetUpdate(true);
     }
 
     public void OnPointerClick(PointerEventData eventData)

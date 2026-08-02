@@ -32,6 +32,7 @@ public class TeamSelectionUI : MonoBehaviour
     public float staggerItemDuration = 0.25f;
 
     private List<CharacterData> selectedOrder = new List<CharacterData>();
+    private List<int> selectedIndices = new List<int>();
     private List<Button> availableButtons = new List<Button>();
     private List<Image> availableImages = new List<Image>();
     private List<TextMeshProUGUI> availableBadges = new List<TextMeshProUGUI>();
@@ -41,6 +42,8 @@ public class TeamSelectionUI : MonoBehaviour
 
     void Start()
     {
+        ShuffleAvailableRoster();
+
         bool skipSelection = ShouldSkipSelection();
 
         if (!skipSelection)
@@ -58,6 +61,15 @@ public class TeamSelectionUI : MonoBehaviour
         RefreshUI();
 
         StartCoroutine(RevealLevelThenShowSelection(skipSelection));
+    }
+
+    private void ShuffleAvailableRoster()
+    {
+        for (int i = availableRoster.Count - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i + 1);
+            (availableRoster[i], availableRoster[j]) = (availableRoster[j], availableRoster[i]);
+        }
     }
 
     private bool ShouldSkipSelection()
@@ -141,28 +153,45 @@ public class TeamSelectionUI : MonoBehaviour
 
     private void OnAvailableClicked(int index)
     {
-        if (!availableButtons[index].interactable) return;
+        Debug.Log($"[TeamSelectionUI] OnAvailableClicked({index}). interactable={availableButtons[index].interactable}. selectedOrder.Count PRIMA={selectedOrder.Count}");
+
+        if (!availableButtons[index].interactable)
+        {
+            Debug.LogWarning($"[TeamSelectionUI] Click ignorato su index={index}: bottone non interactable (probabilmente già selezionato).");
+            return;
+        }
 
         CharacterData data = availableRoster[index];
         selectedOrder.Add(data);
+        selectedIndices.Add(index);
+
+        Debug.Log($"[TeamSelectionUI] Selezionato index={index} ({data.characterName}). selectedIndices ora = [{string.Join(",", selectedIndices)}]");
 
         SetAvailableItemSelected(index, true, selectedOrder.Count);
         RefreshUI();
-        FMODEvents.Instance.PlaySelectSound();
     }
 
     private void OnUndoClicked()
     {
-        if (selectedOrder.Count == 0) return;
+        Debug.Log($"[TeamSelectionUI] OnUndoClicked. selectedIndices PRIMA = [{string.Join(",", selectedIndices)}]");
 
-        CharacterData last = selectedOrder[selectedOrder.Count - 1];
+        if (selectedIndices.Count == 0)
+        {
+            Debug.LogWarning("[TeamSelectionUI] Undo premuto ma selectedIndices è vuoto, nessuna azione.");
+            return;
+        }
+
+        int lastIndex = selectedIndices[selectedIndices.Count - 1];
+        selectedIndices.RemoveAt(selectedIndices.Count - 1);
         selectedOrder.RemoveAt(selectedOrder.Count - 1);
 
-        int index = availableRoster.IndexOf(last);
-        if (index >= 0) SetAvailableItemSelected(index, false, 0);
+        Debug.Log($"[TeamSelectionUI] Undo: deseleziono index={lastIndex}. selectedIndices DOPO = [{string.Join(",", selectedIndices)}]. Button interactable PRIMA della SetAvailableItemSelected = {availableButtons[lastIndex].interactable}");
+
+        SetAvailableItemSelected(lastIndex, false, 0);
+
+        Debug.Log($"[TeamSelectionUI] Undo: index={lastIndex} interactable DOPO = {availableButtons[lastIndex].interactable}");
 
         RefreshUI();
-        FMODEvents.Instance.PlaySelectSound();
     }
 
     private void SetAvailableItemSelected(int index, bool selected, int orderNumber)
@@ -180,10 +209,12 @@ public class TeamSelectionUI : MonoBehaviour
 
     private void RefreshUI()
     {
-        undoButton.interactable = selectedOrder.Count > 0;
+        undoButton.interactable = selectedIndices.Count > 0;
 
         bool allSelected = selectedOrder.Count == availableRoster.Count && availableRoster.Count > 0;
         confirmButton.gameObject.SetActive(allSelected);
+
+        Debug.Log($"[TeamSelectionUI] RefreshUI. selectedOrder.Count={selectedOrder.Count}, availableRoster.Count={availableRoster.Count}, allSelected={allSelected}, undoButton.interactable={undoButton.interactable}");
     }
 
     private void OnConfirmClicked()

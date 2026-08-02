@@ -81,7 +81,10 @@ public class GridMovement : MonoBehaviour
         }
 
         if (movementAnimations != null)
+        {
             movementAnimations.SetIdleFrames(data.idleFrame1, data.idleFrame2);
+            movementAnimations.SetSneakFrames(data.sneakFrame1, data.sneakFrame2, data.sneakFrameDuration);
+        }
 
         targetPosition = SnapToGridCenter(spawnWorldPos);
         transform.position = targetPosition;
@@ -255,6 +258,9 @@ public class GridMovement : MonoBehaviour
         Stairs stairs = FindStairsAt(nextCell);
         if (stairs != null && stairs.IsUnlocked)
         {
+            if (movementAnimations != null)
+                movementAnimations.StopSneaking();
+
             OnStairsEntered?.Invoke(this);
             return;
         }
@@ -266,6 +272,14 @@ public class GridMovement : MonoBehaviour
             isDead = true;
             OnMovesExhausted?.Invoke(this);
             return;
+        }
+
+        if (movementAnimations != null)
+        {
+            if (trap != null)
+                movementAnimations.StartSneaking();
+            else
+                movementAnimations.StopSneaking();
         }
 
         if (movesRemaining <= 0)
@@ -371,6 +385,9 @@ public class GridMovement : MonoBehaviour
         transform.localScale = Vector3.one;
         isMoving = false;
         isDead = false;
+
+        if (movementAnimations != null)
+            movementAnimations.StopSneaking();
 
         OnGroundCellEntered?.Invoke(snapped);
 
