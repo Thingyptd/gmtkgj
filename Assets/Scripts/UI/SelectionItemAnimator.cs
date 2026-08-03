@@ -79,6 +79,7 @@ public class SelectionItemAnimator : MonoBehaviour, IPointerEnterHandler, IPoint
         }
 
         rect.DOKill();
+        FMODEvents.Instance.PlayHoverSound();
         rect.DOScale(baseScale * hoverScale, hoverScaleDuration).SetEase(Ease.OutQuad);
     }
 

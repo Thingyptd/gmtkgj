@@ -82,7 +82,7 @@ public class CharacterManager : MonoBehaviour
         currentCharacter.OnStairsEntered += HandleStairsEntered;
 
         currentCharacter.Initialize(data, lastPosition, collisionTilemap, pitsTilemap, lastFacingLeft);
-
+        FMODEvents.Instance.PlaySpawnSound();
         if (session.currentCharacterMovesRemaining >= 0)
         {
             currentCharacter.movesRemaining = session.currentCharacterMovesRemaining;
@@ -96,6 +96,7 @@ public class CharacterManager : MonoBehaviour
 
     private void HandleFellIntoPit(GridMovement character)
     {
+        FMODEvents.Instance.PlayFallSound();
         character.RecoverFromFall(lastGroundPosition);
     }
 
@@ -103,8 +104,9 @@ public class CharacterManager : MonoBehaviour
     {
         ScreenTransition.Instance.Close(() =>
         {
+            
             GameSession.Instance.GoToNextFloor();
-            FMODEvents.Instance.PlayStartSound();
+            
         });
     }
 

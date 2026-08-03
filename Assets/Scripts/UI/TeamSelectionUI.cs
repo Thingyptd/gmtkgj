@@ -169,6 +169,7 @@ public class TeamSelectionUI : MonoBehaviour
 
         SetAvailableItemSelected(index, true, selectedOrder.Count);
         RefreshUI();
+        FMODEvents.Instance.PlayCharacterSelection();
     }
 
     private void OnUndoClicked()

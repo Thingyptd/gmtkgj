@@ -9,6 +9,7 @@ public class FMODEvents : MonoBehaviour
     public class PlayerSoundsHolder
     {
         public EventReference Movement;
+        public EventReference Sneak;
     }
 
     [Serializable]
@@ -18,6 +19,7 @@ public class FMODEvents : MonoBehaviour
         public EventReference Hover;
         public EventReference Pause;
         public EventReference Start;
+        public EventReference Character;
     }
 
     [Serializable]
@@ -27,6 +29,7 @@ public class FMODEvents : MonoBehaviour
         public EventReference Laser;
         public EventReference Fall;
         public EventReference Button;
+        public EventReference Spawn;
     }
 
     public PlayerSoundsHolder PlayerSounds = new();
@@ -82,5 +85,15 @@ public class FMODEvents : MonoBehaviour
     public void ButtonSound()
     {
         RuntimeManager.PlayOneShot(SFX.Button);
+    }
+
+    public void PlaySpawnSound()
+    {
+        RuntimeManager.PlayOneShot(SFX.Spawn);
+    }
+
+    public void PlayCharacterSelection()
+    {
+        RuntimeManager.PlayOneShot(UISounds.Character);
     }
 }

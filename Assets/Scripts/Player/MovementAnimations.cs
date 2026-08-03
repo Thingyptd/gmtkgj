@@ -1,3 +1,5 @@
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 public class MovementAnimations : MonoBehaviour
 {
@@ -56,6 +58,7 @@ public class MovementAnimations : MonoBehaviour
 
         if (spriteRenderer != null)
             spriteRenderer.sprite = sneakFrame1;
+        StartSneakSound();
     }
 
     public void StopSneaking()
@@ -68,6 +71,7 @@ public class MovementAnimations : MonoBehaviour
 
         if (spriteRenderer != null && idleEnabled && frame1 != null)
             spriteRenderer.sprite = frame1;
+        StopSneakSound();
     }
 
     void Update()
@@ -102,5 +106,22 @@ public class MovementAnimations : MonoBehaviour
         GameObject fx = Instantiate(moveParticlePrefab, worldPos, Quaternion.identity);
         if (particleLifetime > 0f)
             Destroy(fx, particleLifetime);
+    }
+
+    private EventInstance sneakSound;
+
+    private void StartSneakSound()
+    {
+        sneakSound = RuntimeManager.CreateInstance(FMODEvents.Instance.PlayerSounds.Sneak);
+        sneakSound.start();
+    }
+
+    private void StopSneakSound()
+    {
+        if (sneakSound.isValid())
+        {
+            sneakSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            sneakSound.release();
+        }
     }
 }

@@ -53,6 +53,13 @@ MonoBehaviour:
         Data3: 1440868511
         Data4: 1238603866
       Path: event:/SFX/Move
+    Sneak:
+      Guid:
+        Data1: 549026152
+        Data2: 1313477818
+        Data3: 1001098418
+        Data4: -250225734
+      Path: event:/SFX/Sneak
   UISounds:
     Select:
       Guid:
@@ -82,6 +89,13 @@ MonoBehaviour:
         Data3: -376041330
         Data4: 435883986
       Path: event:/UI/Start
+    Character:
+      Guid:
+        Data1: -1042509589
+        Data2: 1134631162
+        Data3: -423698774
+        Data4: 151982026
+      Path: event:/UI/Character
   SFX:
     Boulder:
       Guid:
@@ -111,6 +125,13 @@ MonoBehaviour:
         Data3: -1523250765
         Data4: -154144775
       Path: event:/SFX/Bottone
+    Spawn:
+      Guid:
+        Data1: 964253709
+        Data2: 1246656690
+        Data3: 545841025
+        Data4: -912603562
+      Path: event:/SFX/Spawn
 --- !u!114 &1534308960359059641
 MonoBehaviour:
   m_ObjectHideFlags: 0

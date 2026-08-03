@@ -262,6 +262,7 @@ public class GridMovement : MonoBehaviour
                 movementAnimations.StopSneaking();
 
             OnStairsEntered?.Invoke(this);
+            FMODEvents.Instance.PlayStartSound();
             return;
         }
 
