@@ -51,14 +51,14 @@ public class MovementAnimations : MonoBehaviour
     {
         if (isSneaking) return;
         if (sneakFrame1 == null || sneakFrame2 == null) return;
-
+        
         isSneaking = true;
         sneakTimer = 0f;
         showingSneakFrame1 = true;
-
+        StartSneakSound();
         if (spriteRenderer != null)
             spriteRenderer.sprite = sneakFrame1;
-        StartSneakSound();
+        
     }
 
     public void StopSneaking()
@@ -90,6 +90,8 @@ public class MovementAnimations : MonoBehaviour
             return;
         }
 
+        StopSneakSound();
+
         if (!idleEnabled) return;
         idleTimer += Time.deltaTime;
         if (idleTimer >= idleFrameDuration)
@@ -98,6 +100,7 @@ public class MovementAnimations : MonoBehaviour
             showingFrame1 = !showingFrame1;
             spriteRenderer.sprite = showingFrame1 ? frame1 : frame2;
         }
+
     }
     public void PlayMoveParticle(Vector3 worldPos)
     {
@@ -116,7 +119,7 @@ public class MovementAnimations : MonoBehaviour
         sneakSound.start();
     }
 
-    private void StopSneakSound()
+    public void StopSneakSound()
     {
         if (sneakSound.isValid())
         {

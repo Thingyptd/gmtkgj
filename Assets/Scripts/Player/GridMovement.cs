@@ -374,7 +374,7 @@ public class GridMovement : MonoBehaviour
         }
 
         transform.localScale = Vector3.zero;
-
+        FMODEvents.Instance.PlayFallSound();
         OnFellIntoPit?.Invoke(this);
     }
 
