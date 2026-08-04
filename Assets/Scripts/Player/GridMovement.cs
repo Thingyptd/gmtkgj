@@ -318,6 +318,7 @@ public class GridMovement : MonoBehaviour
             transform.position = Vector3.Lerp(originalPos, edgeTarget, p);
             yield return null;
         }
+        
 
         if (cancelled)
         {
@@ -327,7 +328,7 @@ public class GridMovement : MonoBehaviour
             isTeetering = false;
             yield break;
         }
-
+        FMODEvents.Instance.PlayFallSound();
         transform.position = edgeTarget;
         targetPosition = pitCenter;
 
@@ -374,7 +375,6 @@ public class GridMovement : MonoBehaviour
         }
 
         transform.localScale = Vector3.zero;
-        FMODEvents.Instance.PlayFallSound();
         OnFellIntoPit?.Invoke(this);
     }
 

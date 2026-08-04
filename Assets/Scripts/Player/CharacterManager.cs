@@ -96,7 +96,6 @@ public class CharacterManager : MonoBehaviour
 
     private void HandleFellIntoPit(GridMovement character)
     {
-        FMODEvents.Instance.PlayFallSound();
         character.RecoverFromFall(lastGroundPosition);
     }
 
