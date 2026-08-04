@@ -1,3 +1,5 @@
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -59,9 +61,14 @@ public class PauseMenuUI : MonoBehaviour
     public void TogglePause()
     {
         if (isPaused)
+        {
             Resume();
+        }
         else
+        {
             Pause();
+            StartPauseSnapshot();
+        }
     }
 
     private void Pause()
@@ -80,6 +87,7 @@ public class PauseMenuUI : MonoBehaviour
 
         if (panelRoot != null)
             panelRoot.SetActive(false);
+        StopPauseSnapshot();
     }
 
     private void OnResumeClicked()
@@ -99,6 +107,7 @@ public class PauseMenuUI : MonoBehaviour
         {
             GameSession.Instance.ResetCurrentFloor();
         }
+        StopPauseSnapshot();
     }
 
     private void OnQuitClicked()
@@ -113,6 +122,7 @@ public class PauseMenuUI : MonoBehaviour
         {
             SceneManager.LoadScene(mainMenuSceneName);
         }
+        StopPauseSnapshot();
     }
 
     /// <summary>
@@ -127,5 +137,24 @@ public class PauseMenuUI : MonoBehaviour
 
         if (panelRoot != null)
             panelRoot.SetActive(false);
+        StopPauseSnapshot();
+    }
+
+    private EventInstance pauseInstance;
+
+    private void StartPauseSnapshot()
+    {
+        if (pauseInstance.isValid())
+            return;
+        pauseInstance = RuntimeManager.CreateInstance(FMODEvents.Instance.UISounds.Pause);
+        pauseInstance.start();
+    }
+
+    private void StopPauseSnapshot()
+    {
+        if (!pauseInstance.isValid())
+            return;
+        pauseInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        pauseInstance.release();
     }
 }
